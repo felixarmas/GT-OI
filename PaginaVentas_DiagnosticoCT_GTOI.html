@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CT — Diagnóstico Tricerebral · Dr. Félix Arturo Armas · GT-OI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul:    #0E2040;
+    --azul2:   #1C3D6E;
+    --azulc:   #2A5BAD;
+    --acento:  #C8A96E;
+    --acento2: #E8D5A3;
+    --blanco:  #F7F4EE;
+    --gris:    #6B6456;
+    --gris2:   #A09480;
+    --linea:   rgba(200,169,110,0.25);
+    --fondo:   #0A1829;
+    --teal:    #1A6B5A;
+    --teal2:   #2A9B80;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--fondo);
+    color: var(--blanco);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── LOGO SVG ─────────────────────────────── */
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+  }
+  .logo-text-group { display: flex; flex-direction: column; }
+  .logo-gtoi {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .logo-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--acento);
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* ── NAV ──────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--linea);
+    background: rgba(10,24,41,0.92);
+    backdrop-filter: blur(12px);
+  }
+  .nav-cta {
+    background: var(--acento);
+    color: var(--azul);
+    padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--acento2); transform: translateY(-1px); }
+
+  /* ── HERO ─────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(28,61,110,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(200,169,110,0.06) 0%, transparent 60%),
+      var(--fondo);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(200,169,110,0.03) 59px, rgba(200,169,110,0.03) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(200,169,110,0.03) 59px, rgba(200,169,110,0.03) 60px);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid var(--linea);
+    padding: 8px 18px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-badge span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--acento);
+    text-transform: uppercase;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--teal2);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6.5vw, 82px);
+    font-weight: 900;
+    line-height: 1.03;
+    color: var(--blanco);
+    max-width: 860px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--acento); }
+
+  .hero-subtitle {
+    margin-top: 24px;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 300;
+    color: var(--acento2);
+    max-width: 580px;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-precio-row {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+  .precio-box {
+    display: flex;
+    flex-direction: column;
+  }
+  .precio-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gris2);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .precio-valor {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--acento);
+    line-height: 1;
+  }
+  .precio-sub {
+    font-size: 13px;
+    color: var(--gris2);
+    margin-top: 4px;
+  }
+
+  .btn-primary {
+    background: var(--acento);
+    color: var(--azul);
+    padding: 18px 40px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--acento2); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--acento);
+    padding: 18px 40px;
+    border: 1px solid var(--linea);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--acento); background: rgba(200,169,110,0.06); }
+
+  .hero-credential {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--linea);
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .cred-item { }
+  .cred-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--acento);
+    line-height: 1;
+  }
+  .cred-label { font-size: 12px; color: var(--gris2); margin-top: 4px; }
+
+  /* ── SECTIONS ─────────────────────────────── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.8vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--blanco);
+    max-width: 720px;
+  }
+  .section-title em { font-style: italic; color: var(--acento); }
+
+  /* ── PROBLEMA ─────────────────────────────── */
+  .problema { background: var(--azul); }
+  .problema-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 60px;
+    background: var(--linea);
+  }
+  .problema-item {
+    background: var(--azul);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .problema-item:hover { background: rgba(28,61,110,0.7); }
+  .problema-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--linea);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .problema-text {
+    font-size: 16px;
+    color: var(--acento2);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .problema-text strong { color: var(--blanco); font-weight: 500; }
+
+  .cita-block {
+    margin-top: 56px;
+    padding: 36px 40px;
+    border-left: 3px solid var(--acento);
+    background: rgba(200,169,110,0.05);
+  }
+  .cita-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 2.2vw, 24px);
+    font-style: italic;
+    color: var(--acento2);
+    line-height: 1.55;
+    max-width: 700px;
+  }
+  .cita-fuente {
+    margin-top: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--gris2);
+  }
+
+  /* ── QUÉ ES EL CT ────────────────────────── */
+  .que-es { background: var(--fondo); }
+  .tres-cerebros {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--linea);
+  }
+  .cerebro-card {
+    background: var(--fondo);
+    padding: 44px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .cerebro-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .cerebro-card.ci::before { background: #4A90D9; }
+  .cerebro-card.cc::before { background: var(--teal2); }
+  .cerebro-card.cd::before { background: #C8507A; }
+  .cerebro-card:hover { background: rgba(28,61,110,0.3); }
+
+  .cerebro-sigla {
+    font-family: 'DM Mono', monospace;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .cerebro-card.ci .cerebro-sigla { color: #4A90D9; }
+  .cerebro-card.cc .cerebro-sigla { color: var(--teal2); }
+  .cerebro-card.cd .cerebro-sigla { color: #C8507A; }
+
+  .cerebro-nombre {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .cerebro-card.ci .cerebro-nombre { color: #4A90D9; }
+  .cerebro-card.cc .cerebro-nombre { color: var(--teal2); }
+  .cerebro-card.cd .cerebro-nombre { color: #C8507A; }
+
+  .cerebro-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .cerebro-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gris2);
+    line-height: 1.7;
+  }
+  .cerebro-pregs {
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--gris);
+  }
+
+  .gregori-box {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--linea);
+  }
+  .gregori-item {
+    background: rgba(28,61,110,0.25);
+    padding: 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .gregori-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    color: var(--acento);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .gregori-titulo {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--blanco);
+    margin-bottom: 6px;
+  }
+  .gregori-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gris2);
+    line-height: 1.65;
+  }
+
+  /* ── QUÉ RECIBE ──────────────────────────── */
+  .que-recibe { background: var(--azul); }
+  .recibe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--linea);
+  }
+  .recibe-item {
+    background: var(--azul);
+    padding: 36px 28px;
+    transition: background 0.2s;
+  }
+  .recibe-item:hover { background: rgba(28,61,110,0.6); }
+  .recibe-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--linea);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .recibe-titulo {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--acento);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .recibe-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--acento2);
+    line-height: 1.7;
+  }
+
+  /* ── CÓMO FUNCIONA ───────────────────────── */
+  .como-funciona { background: var(--fondo); }
+  .pasos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+  .pasos-grid::before {
+    content: '';
+    position: absolute;
+    top: 48px;
+    left: calc(16.66% + 20px);
+    right: calc(16.66% + 20px);
+    height: 1px;
+    background: var(--linea);
+  }
+  .paso-item {
+    padding: 0 24px 0 0;
+    position: relative;
+  }
+  .paso-num-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .paso-num {
+    width: 56px; height: 56px;
+    background: var(--acento);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--azul);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .paso-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 1.2;
+  }
+  .paso-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--acento2);
+    line-height: 1.7;
+  }
+  .paso-tag {
+    margin-top: 16px;
+    display: inline-block;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid var(--linea);
+    padding: 5px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--acento);
+  }
+
+  /* ── PROPORCIONALIDAD ────────────────────── */
+  .prop-section { background: var(--azul); }
+  .prop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 56px;
+    background: var(--linea);
+  }
+  .prop-item {
+    background: var(--azul);
+    padding: 32px;
+  }
+  .prop-condicion {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--linea);
+  }
+  .prop-condicion.anula { color: #E8C040; }
+  .prop-condicion.desprop { color: #E87070; }
+  .prop-condicion.ok { color: var(--teal2); }
+  .prop-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--acento2);
+    line-height: 1.65;
+  }
+  .prop-desc strong { color: var(--blanco); font-weight: 500; }
+
+  /* ── INVERSIÓN ───────────────────────────── */
+  .inversion {
+    background:
+      radial-gradient(ellipse 70% 50% at 30% 50%, rgba(28,61,110,0.5) 0%, transparent 70%),
+      var(--fondo);
+  }
+  .inv-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .inv-incluye-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 24px;
+  }
+  .inv-item {
+    display: flex;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--linea);
+  }
+  .inv-item:first-of-type { padding-top: 0; }
+  .inv-item-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .inv-item-titulo { font-size: 15px; font-weight: 500; color: var(--blanco); margin-bottom: 3px; }
+  .inv-item-desc { font-size: 13px; font-weight: 300; color: var(--gris2); line-height: 1.6; }
+
+  .inv-precio-box {
+    background: var(--azul);
+    border: 1px solid var(--linea);
+    border-top: 3px solid var(--acento);
+    padding: 44px 36px;
+    position: sticky;
+    top: 100px;
+  }
+  .inv-precio-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 10px;
+  }
+  .inv-precio {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--blanco);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .inv-precio-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gris2);
+    margin-bottom: 28px;
+  }
+
+  /* Pago */
+  .pago-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 24px;
+    background: var(--linea);
+  }
+  .pago-tab {
+    background: rgba(10,24,41,0.6);
+    padding: 16px 18px;
+  }
+  .pago-tab-titulo {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 8px;
+  }
+  .pago-tab-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--acento2);
+    line-height: 1.6;
+  }
+
+  .inv-cta {
+    display: block;
+    width: 100%;
+    background: var(--acento);
+    color: var(--azul);
+    padding: 18px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .inv-cta:hover { background: var(--acento2); }
+
+  .inv-cta-wa {
+    display: block;
+    width: 100%;
+    background: #1B8A4E;
+    color: #FFFFFF;
+    padding: 16px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+  }
+  .inv-cta-wa:hover { background: #16733F; }
+
+  .inv-nota {
+    font-size: 12px;
+    color: var(--gris2);
+    text-align: center;
+    line-height: 1.55;
+  }
+
+  /* ── CTA FINAL ───────────────────────────── */
+  .cta-final {
+    background: var(--azul2);
+    padding: 100px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,169,110,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 50px);
+    font-weight: 700;
+    color: var(--blanco);
+    max-width: 680px;
+    margin: 0 auto 14px;
+    line-height: 1.2;
+  }
+  .cta-final h2 em { font-style: italic; color: var(--acento); }
+  .cta-final p {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--acento2);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .cta-btn-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .cta-firma {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--linea);
+    font-size: 14px;
+    color: var(--gris2);
+  }
+  .cta-firma strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--acento);
+    margin-bottom: 4px;
+  }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer {
+    background: var(--fondo);
+    padding: 28px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--linea);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer p { font-size: 12px; color: var(--gris2); }
+
+  /* ── ANIMATIONS ──────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 900px) {
+    .problema-grid, .tres-cerebros, .recibe-grid,
+    .gregori-box, .prop-grid, .inv-grid { grid-template-columns: 1fr; }
+    .pasos-grid { grid-template-columns: 1fr; }
+    .pasos-grid::before { display: none; }
+    .inv-precio-box { position: static; }
+    .pago-tabs { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .hero { padding: 100px 5% 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────── -->
+<nav>
+  <a href="#" class="logo-wrap">
+    <!-- Logo SVG GT-OI compacto -->
+    <svg width="36" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M 55 7 A 48 48 0 0 1 96.6 79 L 87 73 A 32 32 0 0 0 55 23 Z" fill="#F7F4EE"/>
+      <path d="M 96.6 79 A 48 48 0 0 1 13.4 79 L 23 73 A 32 32 0 0 0 87 73 Z" fill="#C8A96E"/>
+      <path d="M 13.4 79 A 48 48 0 0 1 55 7 L 55 23 A 32 32 0 0 0 23 73 Z" fill="#2A9B80"/>
+      <circle cx="55" cy="57" r="13" fill="#0D2545"/>
+      <circle cx="55" cy="57" r="7.5" fill="#C8A96E"/>
+      <circle cx="55" cy="57" r="3" fill="#F7F4EE"/>
+    </svg>
+    <div class="logo-text-group">
+      <span class="logo-gtoi">GT-OI</span>
+      <span class="logo-sub">Gestión Tricerebral</span>
+    </div>
+  </a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5LGImgC-yU_ahxamWIdy3mwzaKPtmPJQFppSPnebH1lv44Q/viewform?usp=header" target="_blank" class="nav-cta">
+    Obtener mi diagnóstico — $25 USD
+  </a>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    <span>CT — Revelador del Cociente Triádico · Instrumento original de Gregori · GT-OI</span>
+  </div>
+
+  <h1 class="hero-title">
+    ¿Con cuál de sus tres cerebros<br>lidera cuando más lo <em>necesita</em>?
+  </h1>
+
+  <p class="hero-subtitle">
+    El CT — Revelador del Cociente Triádico de Waldemar de Gregori, integrado al modelo GT-OI, le muestra en 27 preguntas cómo funciona su cabeza bajo presión — y qué cerebro necesita cultivar para tomar mejores decisiones.
+  </p>
+
+  <div class="hero-precio-row">
+    <div class="precio-box">
+      <span class="precio-label">Inversión única</span>
+      <span class="precio-valor">$25</span>
+      <span class="precio-sub">USD · Informe personalizado en 24h</span>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5LGImgC-yU_ahxamWIdy3mwzaKPtmPJQFppSPnebH1lv44Q/viewform?usp=header" target="_blank" class="btn-primary">
+        Comenzar mi diagnóstico
+      </a>
+      <a href="#como-funciona" class="btn-ghost">¿Cómo funciona?</a>
+    </div>
+  </div>
+
+  <div class="hero-credential">
+    <div class="cred-item">
+      <div class="cred-val">27</div>
+      <div class="cred-label">preguntas de autoevaluación</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-val">9 / 9 / 9</div>
+      <div class="cred-label">preguntas por cerebro · escala 9–45</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-val">24 h</div>
+      <div class="cred-label">para recibir su informe personalizado</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-val">6 páginas</div>
+      <div class="cred-label">de informe con interpretación completa</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEMA ──────────────────────────────────────────────────── -->
+<section class="problema">
+  <div class="section-label">El problema real</div>
+  <h2 class="section-title">Lo que nadie le ha dicho sobre <em>cómo decide bajo presión</em></h2>
+
+  <div class="problema-grid">
+    <div class="problema-item">
+      <div class="problema-num">01</div>
+      <p class="problema-text">Cada persona tiene un cerebro dominante que <strong>toma el control cuando la presión es alta</strong>. El analítico se paraliza esperando datos. El operativo actúa sin consultar. El emocional evita el conflicto. Ninguno de los tres, solo, es suficiente.</p>
+    </div>
+    <div class="problema-item">
+      <div class="problema-num">02</div>
+      <p class="problema-text">Cuando la diferencia entre dos cerebros supera 7 puntos, <strong>el más fuerte anula al más débil</strong>. Usted literalmente no puede acceder a ese cerebro cuando más lo necesita — especialmente bajo presión.</p>
+    </div>
+    <div class="problema-item">
+      <div class="problema-num">03</div>
+      <p class="problema-text"><strong>No conocer su perfil le cuesta decisiones reales.</strong> No por falta de experiencia ni de información — sino porque su cerebro dominante responde solo, sin integrar las otras dos dimensiones.</p>
+    </div>
+    <div class="problema-item">
+      <div class="problema-num">04</div>
+      <p class="problema-text">La mayoría de los programas de liderazgo ignoran esto. Le dan teoría. Le dan motivación. <strong>Pero no le dicen cómo funciona su propia cabeza.</strong> El CT de Gregori sí lo hace — en 27 preguntas.</p>
+    </div>
+  </div>
+
+  <div class="cita-block">
+    <p>«Después de descubrir cómo funciona su cabeza, cada cual puede invertir tiempo, esfuerzo y dinero para lograr más proporcionalidad y mejorar siempre más su potencial.»</p>
+    <div class="cita-fuente">— Waldemar de Gregori · Capital Intelectual · Administración Sistémica, 2002</div>
+  </div>
+</section>
+
+<!-- ── QUÉ ES EL CT ──────────────────────────────────────────────── -->
+<section class="que-es">
+  <div class="section-label">El instrumento</div>
+  <h2 class="section-title">El CT — Revelador del <em>Cociente Triádico</em></h2>
+  <p style="margin-top:20px;font-size:17px;font-weight:300;color:var(--acento2);max-width:640px;line-height:1.75;">Desarrollado por el sociólogo brasileño Waldemar de Gregori a partir de las investigaciones de Paul MacLean (cerebro triuno) y Roger Sperry (hemisferios cerebrales). Integrado al modelo GT-OI por el Dr. Félix Arturo Armas — UNELLEZ, Mención Honorífica 2025.</p>
+
+  <div class="tres-cerebros">
+    <div class="cerebro-card ci">
+      <div class="cerebro-sigla">□ CI</div>
+      <div class="cerebro-nombre">Cerebro Izquierdo</div>
+      <div class="cerebro-titulo">Inteligencia Lógico-Analítica</div>
+      <p class="cerebro-desc">Rigor, argumentación, análisis de datos, planificación estratégica, pensamiento crítico. Cuando domina en exceso: parálisis por análisis bajo presión.</p>
+      <div class="cerebro-pregs">Preguntas: 01 · 05 · 08 · 11 · 15 · 16 · 22 · 24 · 27</div>
+    </div>
+    <div class="cerebro-card cc">
+      <div class="cerebro-sigla">△ CC</div>
+      <div class="cerebro-nombre">Cerebro Central</div>
+      <div class="cerebro-titulo">Inteligencia Operativa-Pragmática</div>
+      <p class="cerebro-desc">Velocidad de ejecución, organización, liderazgo práctico, habilidad tecnológica, capacidad de concretar. Cuando domina: actúa sin consultar.</p>
+      <div class="cerebro-pregs">Preguntas: 02 · 09 · 13 · 17 · 18 · 19 · 23 · 25 · 26</div>
+    </div>
+    <div class="cerebro-card cd">
+      <div class="cerebro-sigla">○ CD</div>
+      <div class="cerebro-nombre">Cerebro Derecho</div>
+      <div class="cerebro-titulo">Inteligencia Intuitivo-Emocional</div>
+      <p class="cerebro-desc">Empatía, creatividad, intuición, espiritualidad, humor, apertura a lo nuevo, visión holística. Cuando domina: decide por percepción, evita el conflicto.</p>
+      <div class="cerebro-pregs">Preguntas: 03 · 04 · 06 · 07 · 10 · 12 · 14 · 20 · 21</div>
+    </div>
+  </div>
+
+  <div class="gregori-box">
+    <div class="gregori-item">
+      <div class="gregori-icon">⚖️</div>
+      <div>
+        <div class="gregori-titulo">Escala única 9–45 por cerebro</div>
+        <div class="gregori-desc">Los tres cerebros tienen 9 preguntas cada uno con el mismo rango de respuesta (1 a 5). Máximo: 45. Mínimo: 9. La comparación entre cerebros es directa — sin normalización artificial.</div>
+      </div>
+    </div>
+    <div class="gregori-item">
+      <div class="gregori-icon">📐</div>
+      <div>
+        <div class="gregori-titulo">Ley de la Proporcionalidad</div>
+        <div class="gregori-desc">Lo que distingue al CT de cualquier otro instrumento: no basta el puntaje — hay que evaluar cómo interactúan los tres cerebros entre sí. La proporcionalidad determina si hay equilibrio, anulación o desproporcionalidad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROPORCIONALIDAD ──────────────────────────────────────────── -->
+<section class="prop-section">
+  <div class="section-label">La clave del método</div>
+  <h2 class="section-title">La Ley de la Proporcionalidad — <em>lo que ningún otro instrumento mide</em></h2>
+  <p style="margin-top:20px;font-size:17px;font-weight:300;color:var(--acento2);max-width:640px;line-height:1.75;">Gregori establece que los puntajes no se interpretan de manera aislada. La relación entre cerebros determina si la persona funciona de manera equilibrada o si hay patrones que la limitan — especialmente bajo presión.</p>
+
+  <div class="prop-grid">
+    <div class="prop-item">
+      <div class="prop-condicion anula">Diferencia &lt; 2 puntos entre dos cerebros</div>
+      <p class="prop-desc">Los dos cerebros <strong>SE ANULAN</strong>. Producen indecisión, discusión interna y parálisis. La persona no puede usar plenamente ninguno de los dos al mismo tiempo.</p>
+    </div>
+    <div class="prop-item">
+      <div class="prop-condicion desprop">Diferencia &gt; 7 puntos entre dos cerebros</div>
+      <p class="prop-desc"><strong>DESPROPORCIONALIDAD</strong>: el cerebro mayor anula al menor. La persona queda sin acceso pleno al cerebro más débil — especialmente cuando la presión es alta y el tiempo es escaso.</p>
+    </div>
+    <div class="prop-item" style="grid-column: 1 / -1; background: rgba(42,155,128,0.08); border-top: 1px solid rgba(42,155,128,0.3);">
+      <div class="prop-condicion ok">Diferencia 2 – 7 puntos entre dos cerebros</div>
+      <p class="prop-desc"><strong>PROPORCIÓN ACEPTABLE</strong>. Los dos cerebros coexisten y se complementan. La persona puede acceder a ambos según la situación. Este es el rango de equilibrio que el CT busca cultivar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUÉ RECIBE ──────────────────────────────────────────────────── -->
+<section class="que-recibe" id="que-recibe">
+  <div class="section-label">Su informe personalizado</div>
+  <h2 class="section-title">Lo que recibe en <em>6 páginas</em></h2>
+
+  <div class="recibe-grid">
+    <div class="recibe-item">
+      <div class="recibe-num">01</div>
+      <div class="recibe-titulo">Sus tres puntajes</div>
+      <p class="recibe-desc">CI, CC y CD en escala 9–45 con representación visual. Nivel de cada cerebro según Gregori: mínimo, débil, equilibrado, dominante o superdotado.</p>
+    </div>
+    <div class="recibe-item">
+      <div class="recibe-num">02</div>
+      <div class="recibe-titulo">Diagnóstico de proporcionalidad</div>
+      <p class="recibe-desc">Análisis de los tres pares (CI/CC · CI/CD · CC/CD) con la Ley de la Proporcionalidad aplicada a sus resultados específicos.</p>
+    </div>
+    <div class="recibe-item">
+      <div class="recibe-num">03</div>
+      <div class="recibe-titulo">Descripción de sus tres cerebros</div>
+      <p class="recibe-desc">Fortaleza, riesgo bajo presión y calibración GT-OI de cada uno. Cuál es su dominante, cuál su subdominante y cuál necesita cultivar.</p>
+    </div>
+    <div class="recibe-item">
+      <div class="recibe-num">04</div>
+      <div class="recibe-titulo">Su jerarquía triádica</div>
+      <p class="recibe-desc">Interpretación de su perfil según Gregori según la combinación dominante + subdominante: líder calculista, humanista, pensador pragmático, teórico-humanista u otros.</p>
+    </div>
+    <div class="recibe-item">
+      <div class="recibe-num">05</div>
+      <div class="recibe-titulo">CCT aplicado a su perfil</div>
+      <p class="recibe-desc">El Ciclo Cibernético de Transformación — los 4 pasos del modelo GT-OI — con el paso crítico identificado según su cerebro débil.</p>
+    </div>
+    <div class="recibe-item">
+      <div class="recibe-num">06</div>
+      <div class="recibe-titulo">Próximos pasos concretos</div>
+      <p class="recibe-desc">Tres opciones de continuidad: cultivo autónomo desde hoy, taller con su equipo directivo ($600), o mentoría individual 3 meses ($1.050).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO FUNCIONA ──────────────────────────────────────────────── -->
+<section class="como-funciona" id="como-funciona">
+  <div class="section-label">El proceso</div>
+  <h2 class="section-title">Tres pasos. <em>Sin reuniones.</em> Sin esperas.</h2>
+
+  <div class="pasos-grid">
+    <div class="paso-item">
+      <div class="paso-num-wrap">
+        <div class="paso-num">1</div>
+      </div>
+      <div class="paso-titulo">Pague y confirme</div>
+      <p class="paso-desc">Realice el pago de $25 USD por Pago Móvil BDV o USDT. Envíe el comprobante por WhatsApp al +58 424-5981984. Recibirá el enlace del formulario de inmediato.</p>
+      <span class="paso-tag">Pago Móvil BDV · USDT</span>
+    </div>
+    <div class="paso-item">
+      <div class="paso-num-wrap">
+        <div class="paso-num">2</div>
+      </div>
+      <div class="paso-titulo">Complete el CT</div>
+      <p class="paso-desc">27 preguntas de autoevaluación. Escala 1 a 5. Tiempo estimado: 10 a 15 minutos. Responda cómo actúa realmente, no como le gustaría actuar.</p>
+      <span class="paso-tag">10–15 minutos · Sin instalación</span>
+    </div>
+    <div class="paso-item">
+      <div class="paso-num-wrap">
+        <div class="paso-num">3</div>
+      </div>
+      <div class="paso-titulo">Reciba su informe</div>
+      <p class="paso-desc">En un plazo máximo de 24 horas hábiles recibirá su informe personalizado de 6 páginas con interpretación completa firmada por el Dr. Armas.</p>
+      <span class="paso-tag">PDF personalizado · 24 horas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── INVERSIÓN ──────────────────────────────────────────────────── -->
+<section class="inversion" id="inversion">
+  <div class="section-label">Inversión</div>
+  <h2 class="section-title">Todo lo que incluye su <em>diagnóstico</em></h2>
+
+  <div class="inv-grid">
+    <div class="inv-detalle">
+      <div class="inv-incluye-titulo">Su informe CT incluye</div>
+
+      <div class="inv-item">
+        <div class="inv-item-icon">📊</div>
+        <div>
+          <div class="inv-item-titulo">27 preguntas · CT Gregori Nivel 1 Adultos</div>
+          <div class="inv-item-desc">El instrumento original de Waldemar de Gregori con distribución verificada 9/9/9. Escala 9–45 idéntica para los tres cerebros.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">🧠</div>
+        <div>
+          <div class="inv-item-titulo">Sus tres puntajes con nivel de interpretación</div>
+          <div class="inv-item-desc">Mínimo / Débil / Equilibrado / Dominante / Superdotado según la escala oficial de Gregori.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">⚖️</div>
+        <div>
+          <div class="inv-item-titulo">Ley de la Proporcionalidad aplicada</div>
+          <div class="inv-item-desc">Diagnóstico de los tres pares de cerebros: anulación, desproporcionalidad o equilibrio.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">🔍</div>
+        <div>
+          <div class="inv-item-titulo">Interpretación de perfil según Gregori</div>
+          <div class="inv-item-desc">Dominante, subdominante y débil. Tipo de perfil identificado con sus fortalezas y riesgos.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">🔄</div>
+        <div>
+          <div class="inv-item-titulo">CCT aplicado a su perfil específico</div>
+          <div class="inv-item-desc">Los 4 pasos del Ciclo Cibernético de Transformación con el paso crítico marcado según su cerebro débil.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">📄</div>
+        <div>
+          <div class="inv-item-titulo">Informe PDF de 6 páginas con firma del Dr. Armas</div>
+          <div class="inv-item-desc">Documento personalizado con sus datos, resultados e interpretación completa. Entregado en 24 horas hábiles.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inv-precio-box">
+      <div class="inv-precio-label">Inversión única · Diagnóstico CT</div>
+      <div class="inv-precio">$25</div>
+      <div class="inv-precio-sub">USD · Informe personalizado · 24 horas</div>
+
+      <div class="pago-tabs">
+        <div class="pago-tab">
+          <div class="pago-tab-titulo">🇻🇪 Venezuela</div>
+          <div class="pago-tab-desc">Pago Móvil BDV<br>C.I. V-04606063<br>Tel. 04245981984<br>Banco 0102 — BDV</div>
+        </div>
+        <div class="pago-tab">
+          <div class="pago-tab-titulo">🌍 Exterior</div>
+          <div class="pago-tab-desc">USDT (Crypto)<br>Dirección disponible<br>por WhatsApp al<br>+58 424-5981984</div>
+        </div>
+      </div>
+
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5LGImgC-yU_ahxamWIdy3mwzaKPtmPJQFppSPnebH1lv44Q/viewform?usp=header" target="_blank" class="inv-cta">
+        Comenzar mi diagnóstico ahora
+      </a>
+      <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20quiero%20obtener%20mi%20Diagn%C3%B3stico%20CT%20Tri%C3%A1dico%20GT-OI%20por%20%2425%20USD." target="_blank" class="inv-cta-wa">
+        💬 Coordinar por WhatsApp
+      </a>
+      <div class="inv-nota">
+        Envíe su comprobante de pago por WhatsApp.<br>
+        Recibirá su informe en máximo 24 horas hábiles.<br>
+        Sin reuniones. Sin compromisos adicionales.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ──────────────────────────────────────────────────── -->
+<section class="cta-final">
+  <h2>El primer paso es <em>conocer su cabeza.</em><br>El segundo es calibrarla.</h2>
+  <p>27 preguntas. 24 horas. Un informe que le dice exactamente cómo funciona bajo presión — y qué hacer con eso.</p>
+  <div class="cta-btn-row">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5LGImgC-yU_ahxamWIdy3mwzaKPtmPJQFppSPnebH1lv44Q/viewform?usp=header" target="_blank" class="btn-primary">
+      Obtener mi diagnóstico — $25 USD
+    </a>
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20quiero%20obtener%20mi%20Diagn%C3%B3stico%20CT%20Tri%C3%A1dico%20GT-OI%20por%20%2425%20USD." target="_blank" class="btn-ghost">
+      Preguntar por WhatsApp
+    </a>
+  </div>
+  <div class="cta-firma">
+    <strong>Dr. Félix Arturo Armas</strong>
+    Doctor en Gerencia Avanzada · UNELLEZ · Mención Honorífica · Mención Publicación · 2025<br>
+    Autor del Modelo GT-OI · Araure, Estado Portuguesa, Venezuela
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+  <p>Dr. Félix Arturo Armas · CT — Diagnóstico Tricerebral GT-OI · $25 USD</p>
+  <p>Araure, Estado Portuguesa, Venezuela · 2026</p>
+</footer>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// Fade in on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll(
+  '.problema-item, .cerebro-card, .recibe-item, .paso-item, .gregori-item, .prop-item, .inv-item'
+).forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
