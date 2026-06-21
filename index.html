@@ -307,6 +307,116 @@
     .photo-strip img { height: 200px; }
   }
 
+  /* ── TEST MODAL (Form embebido) ─────────────────────────────── */
+  .test-modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(13,37,69,0.72);
+    z-index: 100; align-items: center; justify-content: center; padding: 24px;
+    backdrop-filter: blur(4px);
+  }
+  .test-modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
+  .test-modal {
+    background: var(--marfil); border-radius: 20px; width: 100%; max-width: 760px;
+    max-height: 88vh; display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  }
+  .test-modal-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 26px; border-bottom: 1px solid var(--linea); background: var(--blanco);
+  }
+  .test-modal-head h3 {
+    font-family: 'Playfair Display', serif; font-size: 18px; color: var(--azul);
+  }
+  .test-modal-head p { font-size: 12.5px; color: var(--gris); margin-top: 2px; }
+  .test-modal-close {
+    background: var(--marfil2); border: none; width: 34px; height: 34px; border-radius: 50%;
+    font-size: 16px; color: var(--azul); cursor: pointer; flex-shrink: 0; transition: background 0.2s;
+  }
+  .test-modal-close:hover { background: var(--linea); }
+  .test-modal iframe { flex: 1; border: none; width: 100%; min-height: 420px; }
+  .test-modal-note {
+    padding: 14px 26px; font-size: 12px; color: var(--gris2); background: var(--blanco);
+    border-top: 1px solid var(--linea); text-align: center;
+  }
+
+  /* ── TEST APP (cálculo nativo, sin Google Forms) ─────────────── */
+  .test-app { flex: 1; overflow-y: auto; padding: 30px 30px 10px; }
+  .test-progress { display: flex; gap: 5px; margin-bottom: 26px; }
+  .test-progress span { flex: 1; height: 5px; border-radius: 3px; background: var(--linea); transition: background 0.3s; }
+  .test-progress span.done { background: var(--teal); }
+  .test-q-label {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .test-q-label.ci { color: var(--azul); }
+  .test-q-label.cc { color: var(--teal); }
+  .test-q-label.cd { color: #8B3A00; }
+  .test-q-text { font-size: 18px; font-weight: 600; color: var(--azul); line-height: 1.5; margin-bottom: 8px; }
+  .test-q-hint { font-size: 13px; color: var(--gris2); font-style: italic; margin-bottom: 26px; }
+  .test-scale { display: flex; gap: 10px; margin-bottom: 28px; }
+  .test-scale button {
+    flex: 1; padding: 16px 6px; border-radius: 12px; border: 1.5px solid var(--linea);
+    background: var(--blanco); cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s; text-align: center;
+  }
+  .test-scale button .tnum { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--azul); display: block; }
+  .test-scale button .tlbl { font-size: 10.5px; color: var(--gris2); display: block; margin-top: 4px; line-height: 1.3; }
+  .test-scale button:hover { border-color: var(--teal); background: #F0F8F6; }
+  .test-scale button.selected { border-color: var(--teal); background: var(--teal); }
+  .test-scale button.selected .tnum, .test-scale button.selected .tlbl { color: var(--blanco); }
+
+  .test-situation-opt {
+    display: block; width: 100%; text-align: left; padding: 16px 18px; margin-bottom: 12px;
+    border: 1.5px solid var(--linea); border-radius: 12px; background: var(--blanco);
+    cursor: pointer; font-size: 14.5px; color: var(--gris2); transition: all 0.2s; line-height: 1.5;
+  }
+  .test-situation-opt:hover { border-color: var(--dorado2); background: #FBF6EA; }
+  .test-situation-opt.selected { border-color: var(--dorado); background: #FBF6EA; color: var(--azul); font-weight: 500; }
+  .test-situation-opt b { color: var(--azul); margin-right: 6px; }
+
+  .test-nav { display: flex; justify-content: space-between; gap: 12px; padding: 0 0 6px; }
+  .test-nav button { padding: 11px 22px; border-radius: 999px; font-size: 13.5px; font-weight: 600; cursor: pointer; border: none; }
+  .test-btn-back { background: transparent; color: var(--gris); }
+  .test-btn-next { background: var(--azul); color: var(--marfil); }
+  .test-btn-next:disabled { background: var(--linea); color: var(--gris2); cursor: not-allowed; }
+  .test-btn-next:not(:disabled):hover { background: var(--teal); }
+
+  .test-result { padding: 34px 30px; text-align: center; }
+  .test-result h4 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--azul); margin-bottom: 6px; }
+  .test-result .res-sub { font-size: 14px; color: var(--gris); margin-bottom: 28px; }
+  .test-result-bars { display: flex; flex-direction: column; gap: 16px; text-align: left; margin-bottom: 28px; }
+  .res-row-head { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .res-bar-track { height: 12px; border-radius: 7px; background: var(--marfil2); overflow: hidden; }
+  .res-bar-fill { height: 100%; border-radius: 7px; transition: width 1s cubic-bezier(.2,.8,.2,1); width: 0%; }
+  .res-ci .res-bar-fill { background: var(--azul); }
+  .res-cc .res-bar-fill { background: var(--teal); }
+  .res-cd .res-bar-fill { background: #B8651A; }
+  .test-dominant { background: var(--marfil2); border-radius: 14px; padding: 22px; margin-bottom: 24px; text-align: left; }
+  .test-dominant .dom-label { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris2); margin-bottom: 6px; }
+  .test-dominant .dom-value { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--azul); margin-bottom: 10px; }
+  .test-dominant .dom-desc { font-size: 14px; color: var(--gris); line-height: 1.6; }
+  .test-result .btn { width: 100%; justify-content: center; margin-top: 6px; }
+
+  .kit-form { padding: 32px 30px; }
+  .kit-form p.intro { font-size: 14.5px; color: var(--gris); margin-bottom: 24px; line-height: 1.7; }
+  .kit-field { margin-bottom: 18px; }
+  .kit-field label {
+    display: block; font-size: 12.5px; font-weight: 600; color: var(--azul); margin-bottom: 7px;
+  }
+  .kit-field input {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--linea); border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 14.5px; color: var(--azul); background: var(--blanco);
+  }
+  .kit-field input:focus { border-color: var(--teal); outline: none; }
+  .kit-submit {
+    width: 100%; margin-top: 6px; padding: 14px; border-radius: 999px; border: none;
+    background: var(--dorado); color: var(--azul); font-weight: 700; font-size: 14.5px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .kit-submit:hover { background: var(--dorado2); }
+  .kit-form .kit-price-note {
+    text-align: center; margin-top: 14px; font-size: 12.5px; color: var(--gris2);
+  }
+
   /* ── AUTHOR ──────────────────────────────────────────────────── */
   .author-wrap {
     display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: center; margin-top: 52px;
@@ -417,7 +527,7 @@
 
   <div class="ladder">
 
-    <a href="#" onclick="alert('Aquí se conectaría al contenido o lead magnet gratuito (Vector C / Test Triádico).'); return false;" class="vcard v-c">
+    <a href="#" onclick="abrirTestModal(); return false;" class="vcard v-c">
       <div class="vcard-icon">📝</div>
       <div class="vcard-body">
         <div class="vlabel">Vector C · Gratis</div>
@@ -445,7 +555,7 @@
       <div class="vcard-arrow">→</div>
     </a>
 
-    <a href="#" onclick="alert('Aquí se conectaría a la página de compra del Kit Digital (Vector E).'); return false;" class="vcard v-e">
+    <a href="#" onclick="abrirKitModal(); return false;" class="vcard v-e">
       <div class="vcard-icon">📦</div>
       <div class="vcard-body">
         <div class="vlabel">Vector E · Aplicación autónoma</div>
@@ -473,7 +583,7 @@
       <div class="vcard-arrow">→</div>
     </a>
 
-    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20quiero%20saber%20si%20el%20programa%20de%20mentor%C3%ADa%20aplica%20para%20mi%20caso." target="_blank" class="vcard v-b">
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20me%20interesa%20el%20programa%20de%20Mentor%C3%ADa%20%E2%80%9CDirectivo%20Tricerebral%E2%80%9D%20(%24350%2Fmes%2C%203%20meses).%20Quisiera%20agendar%20la%20conversaci%C3%B3n%20de%20diagn%C3%B3stico%20gratuita." target="_blank" class="vcard v-b">
       <div class="vcard-icon">🎯</div>
       <div class="vcard-body">
         <div class="vlabel">Vector B · Para usted</div>
@@ -509,7 +619,7 @@
           <li>Sin informe personalizado — usted mismo interpreta su resultado</li>
           <li>Ideal para: curiosidad inicial, antes de decidir si invertir en el diagnóstico completo</li>
         </ul>
-        <a href="#" onclick="alert('Aquí se conectaría al Test Triádico gratuito.'); return false;" class="cbtn">Hacer el test gratis</a>
+        <a href="#" onclick="abrirTestModal(); return false;" class="cbtn">Hacer el test gratis</a>
       </div>
 
       <div class="cdiag featured">
@@ -603,10 +713,254 @@
   </div>
 </div>
 
+<!-- ── MODAL: TEST TRIÁDICO EMBEBIDO ───────────────────────────── -->
+<div class="test-modal-overlay" id="testModalOverlay" onclick="if(event.target===this) cerrarTestModal()">
+  <div class="test-modal" role="dialog" aria-labelledby="testModalTitle" aria-modal="true">
+    <div class="test-modal-head">
+      <div>
+        <h3 id="testModalTitle">Test Triádico Ejecutivo</h3>
+        <p>9 preguntas · 5 minutos · resultado al instante</p>
+      </div>
+      <button class="test-modal-close" onclick="cerrarTestModal()" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="testModalBody" class="test-app"></div>
+  </div>
+</div>
+
+<!-- ── MODAL: KIT DIGITAL — PEDIDO ─────────────────────────────── -->
+<div class="test-modal-overlay" id="kitModalOverlay" onclick="if(event.target===this) cerrarKitModal()">
+  <div class="test-modal" style="max-width:480px;" role="dialog" aria-labelledby="kitModalTitle" aria-modal="true">
+    <div class="test-modal-head">
+      <div>
+        <h3 id="kitModalTitle">Kit Digital GT-OI</h3>
+        <p>5 documentos para aplicar el método por su cuenta</p>
+      </div>
+      <button class="test-modal-close" onclick="cerrarKitModal()" aria-label="Cerrar">✕</button>
+    </div>
+    <form class="kit-form" onsubmit="enviarPedidoKit(event)">
+      <p class="intro">Complete sus datos y le abrimos WhatsApp con un mensaje listo para coordinar el pago de <strong>$45 USD</strong>. El Dr. Armas le envía los 5 documentos apenas confirme.</p>
+      <div class="kit-field">
+        <label for="kitNombre">Nombre completo</label>
+        <input type="text" id="kitNombre" required placeholder="Su nombre">
+      </div>
+      <div class="kit-field">
+        <label for="kitEmail">Correo electrónico</label>
+        <input type="email" id="kitEmail" required placeholder="su@email.com">
+      </div>
+      <button type="submit" class="kit-submit">Continuar por WhatsApp →</button>
+      <p class="kit-price-note">Pago Móvil BDV o USDT · entrega apenas se confirme el pago</p>
+    </form>
+  </div>
+</div>
+
 <footer>
   <p>Dr. Félix Arturo Armas · Modelo GT-OI · Araure, Estado Portuguesa, Venezuela</p>
   <p>felixarmas@gmail.com · +58 424-5981984</p>
 </footer>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// TEST TRIÁDICO EJECUTIVO — cálculo nativo (sin Google Forms)
+// Replica la lógica del CT — Revelador del Cociente Triádico:
+// suma independiente de CI, CC y CD, resultado mostrado al instante.
+// ════════════════════════════════════════════════════════════════
+const TEST_PREGUNTAS = [
+  { cerebro: 'ci', texto: 'Antes de tomar una decisión, necesito revisar los datos disponibles y evaluar las opciones con criterio lógico.', hint: 'Incluso bajo presión, busca información antes de actuar.' },
+  { cerebro: 'ci', texto: 'Cuando surge un problema en mi organización, lo primero que hago es identificar sus causas y analizar sus consecuencias.', hint: 'Tendencia natural al diagnóstico sistemático.' },
+  { cerebro: 'ci', texto: 'Me siento más seguro liderando cuando cuento con información precisa, indicadores concretos o un análisis previo.', hint: 'Necesidad de respaldo lógico para decidir con confianza.' },
+  { cerebro: 'cc', texto: 'Cuando la situación es crítica, mi primer impulso es actuar, organizar el equipo y poner en marcha una solución de inmediato.', hint: 'Respuesta operativa ante la urgencia.' },
+  { cerebro: 'cc', texto: 'Soy reconocido en mi entorno por ejecutar con rapidez y hacer que los proyectos se concreten, incluso en condiciones adversas.', hint: 'Fortaleza en la implementación y el liderazgo práctico.' },
+  { cerebro: 'cc', texto: 'Me incomoda cuando las reuniones se extienden sin llegar a decisiones concretas — prefiero acuerdos de acción con responsables y fechas.', hint: 'Orientación natural al resultado operativo.' },
+  { cerebro: 'cd', texto: 'Antes de decidir algo importante, me importa mucho cómo se siente el equipo — el clima emocional influye en mis decisiones.', hint: 'Lectura del ambiente relacional como insumo decisional.' },
+  { cerebro: 'cd', texto: 'Frecuentemente tengo intuiciones sobre el camino correcto a seguir, incluso cuando los datos no son suficientes.', hint: 'Confianza en la percepción intuitiva y la síntesis holística.' },
+  { cerebro: 'cd', texto: 'Para mí, una buena decisión debe considerar tanto los resultados esperados como el impacto en las personas involucradas.', hint: 'Integración de lo humano y lo estratégico en la gestión.' },
+];
+
+const TEST_SITUACIONES = [
+  { texto: 'Su equipo acaba de comunicarle que un proveedor clave falló y hay riesgo de parar la producción mañana.',
+    opciones: [
+      { letra: 'A', cerebro: 'ci', texto: 'Solicita un informe detallado con causas, alternativas y costos comparativos antes de decidir qué hacer.' },
+      { letra: 'B', cerebro: 'cc', texto: 'Convoca al equipo de inmediato, asigna responsables y activa el plan de contingencia en las próximas horas.' },
+      { letra: 'C', cerebro: 'cd', texto: 'Primero conversa con las personas clave para entender cómo están y qué necesitan antes de actuar.' },
+    ]},
+  { texto: 'Debe liderar una reunión para decidir si se lanza un nuevo producto en un mercado incierto.',
+    opciones: [
+      { letra: 'A', cerebro: 'ci', texto: 'Pide que se presenten datos del mercado, análisis de riesgo y proyecciones financieras antes de votar.' },
+      { letra: 'B', cerebro: 'cc', texto: 'Propone una decisión rápida con un plan piloto de 30 días para validar en la realidad.' },
+      { letra: 'C', cerebro: 'cd', texto: 'Escucha a cada integrante del equipo, recoge percepciones e intuiciones y busca el consenso.' },
+    ]},
+  { texto: 'Un colaborador clave renuncia de forma inesperada en plena etapa de un proyecto crítico.',
+    opciones: [
+      { letra: 'A', cerebro: 'ci', texto: 'Analiza el impacto en los indicadores del proyecto y evalúa opciones de reemplazo con esa información.' },
+      { letra: 'B', cerebro: 'cc', texto: 'Reorganiza el equipo de inmediato, redistribuye las tareas y mantiene el cronograma sin interrupciones.' },
+      { letra: 'C', cerebro: 'cd', texto: 'Tiene una conversación personal con el equipo para gestionar el impacto emocional antes de reestructurar.' },
+    ]},
+];
+
+const CEREBRO_INFO = {
+  ci: { nombre: 'Cerebro Izquierdo', sub: 'Lógico-Analítico', clase: 'ci',
+        desc: 'Decide con datos, estructura y análisis. Bajo presión, su riesgo es la parálisis por exceso de información.' },
+  cc: { nombre: 'Cerebro Central', sub: 'Operativo-Pragmático', clase: 'cc',
+        desc: 'Decide con velocidad y acción concreta. Bajo presión, su riesgo es actuar sin consultar al equipo.' },
+  cd: { nombre: 'Cerebro Derecho', sub: 'Intuitivo-Emocional', clase: 'cd',
+        desc: 'Decide leyendo el clima del equipo y su intuición. Bajo presión, su riesgo es decidir por percepción y no por hechos.' },
+};
+
+let testState = { paso: 0, respuestas: {}, situaciones: {} };
+const TOTAL_PASOS = TEST_PREGUNTAS.length + TEST_SITUACIONES.length; // 12
+
+function abrirTestModal() {
+  testState = { paso: 0, respuestas: {}, situaciones: {} };
+  document.getElementById('testModalOverlay').classList.add('open');
+  renderTestPaso();
+}
+
+function cerrarTestModal() {
+  document.getElementById('testModalOverlay').classList.remove('open');
+}
+
+function renderProgress() {
+  let html = '<div class="test-progress">';
+  for (let i = 0; i < TOTAL_PASOS; i++) {
+    html += `<span class="${i < testState.paso ? 'done' : ''}"></span>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderTestPaso() {
+  const body = document.getElementById('testModalBody');
+  const paso = testState.paso;
+
+  if (paso < TEST_PREGUNTAS.length) {
+    const q = TEST_PREGUNTAS[paso];
+    const seleccion = testState.respuestas[paso];
+    const labelMap = { ci: 'Cerebro Izquierdo · Lógico-Analítico', cc: 'Cerebro Central · Operativo-Pragmático', cd: 'Cerebro Derecho · Intuitivo-Emocional' };
+    let escalaHtml = '<div class="test-scale">';
+    const etiquetas = ['Casi nunca', 'Pocas veces', 'A veces', 'Frecuente', 'Me describe'];
+    for (let v = 1; v <= 5; v++) {
+      escalaHtml += `<button onclick="seleccionarEscala(${paso},${v})" class="${seleccion===v?'selected':''}">
+        <span class="tnum">${v}</span><span class="tlbl">${etiquetas[v-1]}</span></button>`;
+    }
+    escalaHtml += '</div>';
+
+    body.innerHTML = `
+      ${renderProgress()}
+      <div class="test-q-label ${q.cerebro}">Pregunta ${paso+1} de 9 · ${labelMap[q.cerebro]}</div>
+      <div class="test-q-text">${q.texto}</div>
+      <div class="test-q-hint">${q.hint}</div>
+      ${escalaHtml}
+      <div class="test-nav">
+        <button class="test-btn-back" onclick="testAnterior()" ${paso===0?'style="visibility:hidden"':''}>← Anterior</button>
+        <button class="test-btn-next" onclick="testSiguiente()" ${seleccion?'':'disabled'}>Continuar →</button>
+      </div>`;
+  } else {
+    const sIdx = paso - TEST_PREGUNTAS.length;
+    const s = TEST_SITUACIONES[sIdx];
+    const seleccion = testState.situaciones[sIdx];
+    let opsHtml = '';
+    s.opciones.forEach(op => {
+      opsHtml += `<button class="test-situation-opt ${seleccion===op.letra?'selected':''}" onclick="seleccionarSituacion(${sIdx},'${op.letra}')">
+        <b>${op.letra})</b>${op.texto}</button>`;
+    });
+    body.innerHTML = `
+      ${renderProgress()}
+      <div class="test-q-label" style="color:var(--dorado)">Situación ${sIdx+1} de 3</div>
+      <div class="test-q-text">${s.texto}</div>
+      <div class="test-q-hint">Elija la opción que más refleje su reacción espontánea.</div>
+      <div style="margin-bottom:24px;">${opsHtml}</div>
+      <div class="test-nav">
+        <button class="test-btn-back" onclick="testAnterior()">← Anterior</button>
+        <button class="test-btn-next" onclick="testSiguiente()" ${seleccion?'':'disabled'}>${sIdx===2?'Ver mi resultado →':'Continuar →'}</button>
+      </div>`;
+  }
+}
+
+function seleccionarEscala(paso, valor) {
+  testState.respuestas[paso] = valor;
+  renderTestPaso();
+}
+function seleccionarSituacion(idx, letra) {
+  testState.situaciones[idx] = letra;
+  renderTestPaso();
+}
+function testAnterior() {
+  if (testState.paso > 0) { testState.paso--; renderTestPaso(); }
+}
+function testSiguiente() {
+  if (testState.paso < TOTAL_PASOS - 1) { testState.paso++; renderTestPaso(); }
+  else { mostrarResultadoTest(); }
+}
+
+function mostrarResultadoTest() {
+  const sumas = { ci: 0, cc: 0, cd: 0 };
+  TEST_PREGUNTAS.forEach((q, i) => { sumas[q.cerebro] += (testState.respuestas[i] || 0); });
+
+  const conteoSit = { ci: 0, cc: 0, cd: 0 };
+  Object.values(testState.situaciones).forEach(letra => {
+    const map = { A: 'ci', B: 'cc', C: 'cd' };
+    conteoSit[map[letra]]++;
+  });
+
+  const max = Math.max(sumas.ci, sumas.cc, sumas.cd);
+  const dominanteKey = sumas.ci === max ? 'ci' : (sumas.cc === max ? 'cc' : 'cd');
+  const dom = CEREBRO_INFO[dominanteKey];
+
+  const body = document.getElementById('testModalBody');
+  body.innerHTML = `
+    <div class="test-result">
+      <h4>Su resultado está listo</h4>
+      <p class="res-sub">Puntaje por cerebro (máximo 15 cada uno) + patrón de sus 3 situaciones</p>
+      <div class="test-result-bars">
+        ${['ci','cc','cd'].map(k => `
+          <div class="res-row res-${k}">
+            <div class="res-row-head"><span>${CEREBRO_INFO[k].nombre} · ${CEREBRO_INFO[k].sub}</span><span>${sumas[k]} / 15</span></div>
+            <div class="res-bar-track"><div class="res-bar-fill" id="bar-${k}"></div></div>
+          </div>`).join('')}
+      </div>
+      <div class="test-dominant">
+        <div class="dom-label">Su perfil dominante</div>
+        <div class="dom-value">${dom.nombre} — ${dom.sub}</div>
+        <div class="dom-desc">${dom.desc} En sus situaciones directivas, eligió esta reacción ${conteoSit[dominanteKey]} de 3 veces.</div>
+      </div>
+      <a href="https://wa.me/584245981984?text=${encodeURIComponent('Hola Dr. Armas, hice el Test Triádico Ejecutivo. Mi resultado: CI='+sumas.ci+', CC='+sumas.cc+', CD='+sumas.cd+'. Quiero saber más sobre el diagnóstico completo.')}"
+         target="_blank" class="btn btn-primary">Profundizar con el CT completo ($25) →</a>
+    </div>`;
+
+  // animar barras tras pintar el DOM
+  requestAnimationFrame(() => {
+    ['ci','cc','cd'].forEach(k => {
+      const el = document.getElementById('bar-'+k);
+      if (el) el.style.width = Math.round((sumas[k]/15)*100) + '%';
+    });
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { cerrarTestModal(); cerrarKitModal(); }
+});
+
+// ════════════════════════════════════════════════════════════════
+// KIT DIGITAL GT-OI — Vector E (versión intermedia: form + WhatsApp)
+// ════════════════════════════════════════════════════════════════
+function abrirKitModal() {
+  document.getElementById('kitModalOverlay').classList.add('open');
+}
+function cerrarKitModal() {
+  document.getElementById('kitModalOverlay').classList.remove('open');
+}
+function enviarPedidoKit(event) {
+  event.preventDefault();
+  const nombre = document.getElementById('kitNombre').value.trim();
+  const email = document.getElementById('kitEmail').value.trim();
+  if (!nombre || !email) return;
+
+  const mensaje = `Hola Dr. Armas, soy ${nombre} (${email}). Quiero el Kit Digital GT-OI por $45 USD.`;
+  const url = `https://wa.me/584245981984?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+  cerrarKitModal();
+}
+</script>
 
 <script>
 document.querySelectorAll('a[href^="#"]').forEach(a => {
