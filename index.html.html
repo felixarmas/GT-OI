@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT-OI — Dr. Félix Arturo Armas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --marfil:   #F7F4EE;
+    --marfil2:  #EFEAE0;
+    --azul:     #0D2545;
+    --azul2:    #16345E;
+    --dorado:   #B8922A;
+    --dorado2:  #D4AF5C;
+    --teal:     #1A6B5A;
+    --teal2:    #228071;
+    --gris:     #6B6456;
+    --gris2:    #9A9384;
+    --linea:    rgba(13,37,69,0.12);
+    --blanco:   #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--marfil);
+    color: var(--azul);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* ── NAV ─────────────────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(247,244,238,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--linea);
+    padding: 16px 6%;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; }
+  .nav-brand svg { width: 30px; height: 30px; }
+  .nav-brand span {
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: 19px; color: var(--azul);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: var(--gris); text-decoration: none;
+    letter-spacing: 0.03em; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ── HERO ────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 92vh; display: flex; align-items: center;
+    padding: 60px 6% 40px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 65% 50% at 78% 18%, rgba(184,146,42,0.10) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 8% 85%, rgba(26,107,90,0.08) 0%, transparent 60%),
+      var(--marfil);
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center;
+    max-width: 1180px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 22px;
+    opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic;
+    font-size: clamp(34px, 4.6vw, 56px); line-height: 1.12; color: var(--azul);
+    opacity: 0; animation: fadeUp 0.8s 0.22s forwards;
+  }
+  .hero h1 em { font-style: normal; color: var(--dorado); border-bottom: 3px solid var(--dorado2); }
+  .hero-sub {
+    margin-top: 24px; font-size: clamp(16px, 1.6vw, 18px); color: var(--gris); max-width: 480px;
+    font-weight: 400; opacity: 0; animation: fadeUp 0.8s 0.34s forwards;
+  }
+  .hero-ctas { margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.46s forwards; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 26px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: all 0.25s cubic-bezier(.2,.8,.2,1); cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--azul); color: var(--marfil); }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,107,90,0.28); }
+  .btn-ghost { background: transparent; color: var(--azul); border: 1.5px solid var(--azul); }
+  .btn-ghost:hover { background: var(--azul); color: var(--marfil); }
+
+  .hero-trust {
+    margin-top: 44px; display: flex; gap: 32px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.58s forwards;
+  }
+  .trust-item { }
+  .trust-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: var(--azul); }
+  .trust-label { font-size: 12px; color: var(--gris2); margin-top: 2px; }
+
+  /* Símbolo animado */
+  .hero-symbol { display: flex; justify-content: center; align-items: center; position: relative; }
+  .symbol-wrap {
+    width: min(340px, 80vw); opacity: 0; animation: fadeIn 1s 0.3s forwards;
+  }
+  .symbol-wrap svg { width: 100%; height: auto; }
+  .seg { transform-origin: 170px 80px; animation: pulse 5s ease-in-out infinite; }
+  .seg-2 { animation-delay: 0.4s; }
+  .seg-3 { animation-delay: 0.8s; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.78; } }
+  @media (prefers-reduced-motion: reduce) { .seg { animation: none; } }
+
+  @keyframes fadeUp { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .hero-ctas, .hero-trust { justify-content: center; }
+  }
+
+  /* ── SECTIONS shared ─────────────────────────────────────────── */
+  section { padding: 90px 6%; max-width: 1180px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 16px; text-align: center;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(28px, 3.4vw, 42px);
+    color: var(--azul); text-align: center; max-width: 720px; margin: 0 auto;
+  }
+  .section-title em { font-style: italic; color: var(--dorado); }
+  .section-sub {
+    text-align: center; color: var(--gris); max-width: 600px; margin: 18px auto 0; font-size: 16px;
+  }
+
+  /* ── VECTORS LADDER ──────────────────────────────────────────── */
+  .ladder {
+    margin-top: 56px; display: flex; flex-direction: column; gap: 18px;
+  }
+  .vcard {
+    display: grid; grid-template-columns: 64px 1fr auto; gap: 22px; align-items: center;
+    background: var(--blanco); border: 1px solid var(--linea); border-radius: 18px;
+    padding: 26px 30px; transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+    text-decoration: none; color: inherit;
+  }
+  .vcard:hover {
+    transform: translateY(-3px); box-shadow: 0 14px 36px rgba(13,37,69,0.10);
+    border-color: var(--dorado2);
+  }
+  .vcard-icon {
+    width: 64px; height: 64px; border-radius: 14px; display: flex; align-items: center;
+    justify-content: center; font-size: 26px; flex-shrink: 0;
+  }
+  .vcard-body .vlabel {
+    font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gris2); margin-bottom: 6px;
+  }
+  .vcard-body h3 {
+    font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--azul);
+    margin-bottom: 6px;
+  }
+  .vcard-body p { font-size: 14.5px; color: var(--gris); max-width: 460px; }
+  .vcard-price { text-align: right; flex-shrink: 0; }
+  .vcard-price .amt { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--azul); }
+  .vcard-price .note { font-size: 11.5px; color: var(--gris2); margin-top: 2px; }
+  .vcard-arrow { font-size: 20px; color: var(--dorado); margin-left: 8px; transition: transform 0.25s; }
+  .vcard:hover .vcard-arrow { transform: translateX(4px); }
+
+  .v-c .vcard-icon { background: #EFEAE0; color: var(--gris); }
+  .v-d .vcard-icon { background: #E0EDE9; color: var(--teal); }
+  .v-e .vcard-icon { background: #F3E9D6; color: var(--dorado); }
+  .v-a .vcard-icon { background: #DCE6F0; color: var(--azul); }
+  .v-b .vcard-icon { background: var(--azul); color: var(--dorado2); }
+  .v-b { border-color: var(--azul); background: linear-gradient(180deg, var(--blanco) 0%, #FBF8F0 100%); }
+  .v-b .vlabel { color: var(--dorado); }
+
+  @media (max-width: 640px) {
+    .vcard { grid-template-columns: 48px 1fr; }
+    .vcard-icon { width: 48px; height: 48px; font-size: 20px; }
+    .vcard-price { grid-column: 1 / -1; text-align: left; margin-top: 6px; padding-left: 70px; }
+    .vcard-arrow { display: none; }
+  }
+
+  /* ── DIAGNOSTIC COMPARISON ───────────────────────────────────── */
+  .compare-wrap { background: var(--azul); border-radius: 28px; padding: 64px 6%; margin: 0 6%; }
+  .compare-inner { max-width: 1080px; margin: 0 auto; }
+  .compare-wrap .section-title { color: var(--marfil); }
+  .compare-wrap .section-title em { color: var(--dorado2); }
+  .compare-wrap .section-eyebrow { color: var(--dorado2); }
+  .compare-wrap .section-sub { color: rgba(247,244,238,0.65); }
+
+  .compare-grid {
+    margin-top: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  .cdiag {
+    background: rgba(247,244,238,0.04); border: 1px solid rgba(247,244,238,0.14);
+    border-radius: 20px; padding: 36px 32px; position: relative;
+  }
+  .cdiag.featured { border-color: var(--dorado2); background: rgba(184,146,42,0.07); }
+  .cdiag-badge {
+    position: absolute; top: -13px; left: 32px; background: var(--dorado);
+    color: var(--azul); font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 5px 14px; border-radius: 999px; text-transform: uppercase;
+  }
+  .cdiag h3 {
+    font-family: 'Playfair Display', serif; font-size: 24px; color: var(--marfil); margin-bottom: 6px;
+  }
+  .cdiag .cprice {
+    font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--dorado2);
+    margin: 14px 0 4px;
+  }
+  .cdiag .cprice-note { font-size: 13px; color: rgba(247,244,238,0.55); margin-bottom: 26px; }
+  .cdiag ul { list-style: none; }
+  .cdiag li {
+    display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(247,244,238,0.1);
+    font-size: 14.5px; color: rgba(247,244,238,0.85);
+  }
+  .cdiag li:last-child { border-bottom: none; }
+  .cdiag li::before { content: '✦'; color: var(--dorado2); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+  .cdiag .cbtn {
+    margin-top: 28px; display: block; text-align: center; padding: 14px;
+    border-radius: 999px; font-weight: 600; font-size: 14px; text-decoration: none;
+    transition: all 0.25s;
+  }
+  .cdiag.featured .cbtn { background: var(--dorado); color: var(--azul); }
+  .cdiag.featured .cbtn:hover { background: var(--dorado2); transform: translateY(-2px); }
+  .cdiag:not(.featured) .cbtn { background: transparent; border: 1.5px solid rgba(247,244,238,0.4); color: var(--marfil); }
+  .cdiag:not(.featured) .cbtn:hover { background: rgba(247,244,238,0.1); }
+
+  .compare-arrow-note {
+    text-align: center; margin-top: 36px; font-size: 14px; color: rgba(247,244,238,0.6);
+    max-width: 520px; margin-left: auto; margin-right: auto;
+  }
+  .compare-arrow-note strong { color: var(--dorado2); }
+
+  @media (max-width: 760px) { .compare-grid { grid-template-columns: 1fr; } }
+
+  /* ── HOW IT WORKS strip ──────────────────────────────────────── */
+  .flow-strip {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 52px; flex-wrap: wrap;
+  }
+  .flow-step {
+    background: var(--blanco); border: 1px solid var(--linea); border-radius: 14px;
+    padding: 16px 20px; font-size: 13px; font-weight: 600; color: var(--azul);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .flow-step .fnum {
+    width: 22px; height: 22px; border-radius: 50%; background: var(--teal); color: var(--marfil);
+    font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 700;
+  }
+  .flow-sep { color: var(--gris2); font-size: 16px; }
+  @media (max-width: 700px) { .flow-strip { flex-direction: column; align-items: stretch; } .flow-sep { display:none; } }
+
+  .gregori-credit {
+    margin-top: 52px; background: var(--marfil2); border: 1px solid var(--linea);
+    border-left: 4px solid var(--teal); border-radius: 16px; padding: 32px 36px;
+  }
+  .gregori-credit .gc-label {
+    font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+  }
+  .gregori-credit h4 {
+    font-family: 'Playfair Display', serif; font-size: 19px; color: var(--azul); margin-bottom: 10px;
+  }
+  .gregori-credit p { font-size: 14.5px; color: var(--gris); line-height: 1.75; }
+  .gregori-credit p strong { color: var(--azul); }
+
+  /* ── HERO IMAGE STRIP ────────────────────────────────────────── */
+  .hero-photo {
+    margin-top: 32px; border-radius: 18px; overflow: hidden; max-width: 480px;
+    box-shadow: 0 18px 40px rgba(13,37,69,0.14); border: 1px solid var(--linea);
+    opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+  }
+  .hero-photo img { width: 100%; display: block; }
+  .hero-photo figcaption {
+    padding: 10px 16px; font-size: 12px; color: var(--gris); background: var(--blanco);
+  }
+
+  /* ── PHOTO STRIP (sección "cómo funciona") ──────────────────── */
+  .photo-strip {
+    margin-top: 56px; display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 16px;
+  }
+  .photo-strip figure {
+    margin: 0; border-radius: 16px; overflow: hidden; position: relative;
+    box-shadow: 0 8px 24px rgba(13,37,69,0.08);
+  }
+  .photo-strip img { width: 100%; height: 220px; object-fit: cover; display: block; }
+  .photo-strip figcaption {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px 12px;
+    background: linear-gradient(180deg, transparent, rgba(13,37,69,0.78));
+    color: var(--marfil); font-size: 12.5px; font-weight: 500;
+  }
+  @media (max-width: 820px) {
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-strip img { height: 200px; }
+  }
+
+  /* ── TEST MODAL (Form embebido) ─────────────────────────────── */
+  .test-modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(13,37,69,0.72);
+    z-index: 100; align-items: center; justify-content: center; padding: 24px;
+    backdrop-filter: blur(4px);
+  }
+  .test-modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
+  .test-modal {
+    background: var(--marfil); border-radius: 20px; width: 100%; max-width: 760px;
+    max-height: 88vh; display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  }
+  .test-modal-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 26px; border-bottom: 1px solid var(--linea); background: var(--blanco);
+  }
+  .test-modal-head h3 {
+    font-family: 'Playfair Display', serif; font-size: 18px; color: var(--azul);
+  }
+  .test-modal-head p { font-size: 12.5px; color: var(--gris); margin-top: 2px; }
+  .test-modal-close {
+    background: var(--marfil2); border: none; width: 34px; height: 34px; border-radius: 50%;
+    font-size: 16px; color: var(--azul); cursor: pointer; flex-shrink: 0; transition: background 0.2s;
+  }
+  .test-modal-close:hover { background: var(--linea); }
+  .test-modal iframe { flex: 1; border: none; width: 100%; min-height: 420px; }
+  .test-modal-note {
+    padding: 14px 26px; font-size: 12px; color: var(--gris2); background: var(--blanco);
+    border-top: 1px solid var(--linea); text-align: center;
+  }
+
+  /* ── TEST APP (cálculo nativo, sin Google Forms) ─────────────── */
+  .test-app { flex: 1; overflow-y: auto; padding: 30px 30px 10px; }
+  .test-progress { display: flex; gap: 5px; margin-bottom: 26px; }
+  .test-progress span { flex: 1; height: 5px; border-radius: 3px; background: var(--linea); transition: background 0.3s; }
+  .test-progress span.done { background: var(--teal); }
+  .test-q-label {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .test-q-label.ci { color: var(--azul); }
+  .test-q-label.cc { color: var(--teal); }
+  .test-q-label.cd { color: #8B3A00; }
+  .test-q-text { font-size: 18px; font-weight: 600; color: var(--azul); line-height: 1.5; margin-bottom: 8px; }
+  .test-q-hint { font-size: 13px; color: var(--gris2); font-style: italic; margin-bottom: 26px; }
+  .test-scale { display: flex; gap: 10px; margin-bottom: 28px; }
+  .test-scale button {
+    flex: 1; padding: 16px 6px; border-radius: 12px; border: 1.5px solid var(--linea);
+    background: var(--blanco); cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s; text-align: center;
+  }
+  .test-scale button .tnum { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--azul); display: block; }
+  .test-scale button .tlbl { font-size: 10.5px; color: var(--gris2); display: block; margin-top: 4px; line-height: 1.3; }
+  .test-scale button:hover { border-color: var(--teal); background: #F0F8F6; }
+  .test-scale button.selected { border-color: var(--teal); background: var(--teal); }
+  .test-scale button.selected .tnum, .test-scale button.selected .tlbl { color: var(--blanco); }
+
+  .test-situation-opt {
+    display: block; width: 100%; text-align: left; padding: 16px 18px; margin-bottom: 12px;
+    border: 1.5px solid var(--linea); border-radius: 12px; background: var(--blanco);
+    cursor: pointer; font-size: 14.5px; color: var(--gris2); transition: all 0.2s; line-height: 1.5;
+  }
+  .test-situation-opt:hover { border-color: var(--dorado2); background: #FBF6EA; }
+  .test-situation-opt.selected { border-color: var(--dorado); background: #FBF6EA; color: var(--azul); font-weight: 500; }
+  .test-situation-opt b { color: var(--azul); margin-right: 6px; }
+
+  .test-nav { display: flex; justify-content: space-between; gap: 12px; padding: 0 0 6px; }
+  .test-nav button { padding: 11px 22px; border-radius: 999px; font-size: 13.5px; font-weight: 600; cursor: pointer; border: none; }
+  .test-btn-back { background: transparent; color: var(--gris); }
+  .test-btn-next { background: var(--azul); color: var(--marfil); }
+  .test-btn-next:disabled { background: var(--linea); color: var(--gris2); cursor: not-allowed; }
+  .test-btn-next:not(:disabled):hover { background: var(--teal); }
+
+  .test-result { padding: 34px 30px; text-align: center; }
+  .test-result h4 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--azul); margin-bottom: 6px; }
+  .test-result .res-sub { font-size: 14px; color: var(--gris); margin-bottom: 28px; }
+  .test-result-bars { display: flex; flex-direction: column; gap: 16px; text-align: left; margin-bottom: 28px; }
+  .res-row-head { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .res-bar-track { height: 12px; border-radius: 7px; background: var(--marfil2); overflow: hidden; }
+  .res-bar-fill { height: 100%; border-radius: 7px; transition: width 1s cubic-bezier(.2,.8,.2,1); width: 0%; }
+  .res-ci .res-bar-fill { background: var(--azul); }
+  .res-cc .res-bar-fill { background: var(--teal); }
+  .res-cd .res-bar-fill { background: #B8651A; }
+  .test-dominant { background: var(--marfil2); border-radius: 14px; padding: 22px; margin-bottom: 24px; text-align: left; }
+  .test-dominant .dom-label { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris2); margin-bottom: 6px; }
+  .test-dominant .dom-value { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--azul); margin-bottom: 10px; }
+  .test-dominant .dom-desc { font-size: 14px; color: var(--gris); line-height: 1.6; }
+  .test-result .btn { width: 100%; justify-content: center; margin-top: 6px; }
+
+  .kit-form { padding: 32px 30px; }
+  .kit-form p.intro { font-size: 14.5px; color: var(--gris); margin-bottom: 24px; line-height: 1.7; }
+  .kit-field { margin-bottom: 18px; }
+  .kit-field label {
+    display: block; font-size: 12.5px; font-weight: 600; color: var(--azul); margin-bottom: 7px;
+  }
+  .kit-field input {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--linea); border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 14.5px; color: var(--azul); background: var(--blanco);
+  }
+  .kit-field input:focus { border-color: var(--teal); outline: none; }
+  .kit-submit {
+    width: 100%; margin-top: 6px; padding: 14px; border-radius: 999px; border: none;
+    background: var(--dorado); color: var(--azul); font-weight: 700; font-size: 14.5px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .kit-submit:hover { background: var(--dorado2); }
+  .kit-form .kit-price-note {
+    text-align: center; margin-top: 14px; font-size: 12.5px; color: var(--gris2);
+  }
+
+  /* ── AUTHOR ──────────────────────────────────────────────────── */
+  .author-wrap {
+    display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: center; margin-top: 52px;
+  }
+  .author-card {
+    background: var(--blanco); border: 1px solid var(--linea); border-radius: 20px;
+    padding: 36px; border-top: 4px solid var(--dorado);
+  }
+  .author-card h3 { font-family: 'Playfair Display', serif; font-size: 23px; color: var(--azul); margin-bottom: 6px; }
+  .author-card .role { font-size: 13px; color: var(--teal); margin-bottom: 22px; font-weight: 500; }
+  .author-card ul { list-style: none; }
+  .author-card li {
+    font-size: 13.5px; color: var(--gris); padding: 9px 0; border-bottom: 1px solid var(--linea);
+    display: flex; gap: 10px;
+  }
+  .author-card li:last-child { border-bottom: none; }
+  .author-card li::before { content: '—'; color: var(--dorado); flex-shrink: 0; }
+  .author-bio p { font-size: 16px; color: var(--gris); line-height: 1.8; margin-bottom: 18px; }
+  .author-bio strong { color: var(--azul); font-weight: 600; }
+  @media (max-width: 820px) { .author-wrap { grid-template-columns: 1fr; } }
+
+  /* ── FOOTER CTA ──────────────────────────────────────────────── */
+  .footer-cta {
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul2) 100%);
+    border-radius: 28px; margin: 0 6% 60px; padding: 64px 6%; text-align: center;
+  }
+  .footer-cta h2 {
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+    font-size: clamp(26px, 3.2vw, 38px); color: var(--marfil); max-width: 600px; margin: 0 auto 16px;
+  }
+  .footer-cta h2 em { color: var(--dorado2); font-style: normal; }
+  .footer-cta p { color: rgba(247,244,238,0.7); max-width: 480px; margin: 0 auto 32px; font-size: 16px; }
+  .footer-cta .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    padding: 32px 6%; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--linea); font-size: 12.5px; color: var(--gris2);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M 55 7 A 48 48 0 0 1 96.6 79 L 87 73 A 32 32 0 0 0 55 23 Z" fill="#0D2545"/>
+      <path d="M 96.6 79 A 48 48 0 0 1 13.4 79 L 23 73 A 32 32 0 0 0 87 73 Z" fill="#B8922A"/>
+      <path d="M 13.4 79 A 48 48 0 0 1 55 7 L 55 23 A 32 32 0 0 0 23 73 Z" fill="#1A6B5A"/>
+      <circle cx="55" cy="57" r="13" fill="#0D2545"/>
+      <circle cx="55" cy="57" r="7.5" fill="#B8922A"/>
+      <circle cx="55" cy="57" r="3" fill="#FFFFFF"/>
+    </svg>
+    <span>GT-OI</span>
+  </div>
+  <div class="nav-links">
+    <a href="#vectores">Cómo empezar</a>
+    <a href="#diagnosticos">Diagnósticos</a>
+    <a href="#autor">El método</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Modelo GT-OI · Dr. Félix Arturo Armas</div>
+      <h1>¿Cuál de sus <em>tres cerebros</em> decide cuando la presión sube?</h1>
+      <p class="hero-sub">Un método con base doctoral para que usted y su equipo decidan bien bajo presión. Empiece gratis, a su ritmo, y avance solo hasta donde lo necesite.</p>
+      <div class="hero-ctas">
+        <a href="#vectores" class="btn btn-primary">Ver por dónde empezar</a>
+        <a href="#diagnosticos" class="btn btn-ghost">Comparar los diagnósticos</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><div class="trust-val">4 años</div><div class="trust-label">de investigación doctoral</div></div>
+        <div class="trust-item"><div class="trust-val">Mención Honorífica</div><div class="trust-label">UNELLEZ · 2025</div></div>
+        <div class="trust-item"><div class="trust-val">3 cerebros</div><div class="trust-label">un método para equilibrarlos</div></div>
+      </div>
+    </div>
+    <div class="hero-symbol">
+      <div class="symbol-wrap">
+        <svg viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg" role="img">
+          <title>Símbolo de los tres cerebros del modelo GT-OI</title>
+          <path class="seg seg-1" d="M 170 24 A 64 64 0 0 1 225.4 104 L 211 96 A 44 44 0 0 0 170 40 Z" fill="#0D2545"/>
+          <path class="seg seg-2" d="M 225.4 104 A 64 64 0 0 1 114.6 104 L 128.3 96 A 44 44 0 0 0 211 96 Z" fill="#B8922A"/>
+          <path class="seg seg-3" d="M 114.6 104 A 64 64 0 0 1 170 24 L 170 40 A 44 44 0 0 0 128.3 96 Z" fill="#1A6B5A"/>
+          <circle cx="170" cy="80" r="16" fill="#0D2545"/>
+          <circle cx="170" cy="80" r="9" fill="#B8922A"/>
+          <circle cx="170" cy="80" r="4" fill="#FFFFFF"/>
+          <rect x="60" y="158" width="220" height="1.5" fill="#B8922A"/>
+          <text x="170" y="200" text-anchor="middle" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#0D2545" letter-spacing="3">GT-OI</text>
+          <text x="170" y="222" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="400" fill="#6B6456" letter-spacing="2.5">GESTIÓN TRICEREBRAL</text>
+        </svg>
+      </div>
+      <figure class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Equipo directivo en una reunión de trabajo, discutiendo una decisión" loading="lazy">
+        <figcaption>Así se ve un equipo decidiendo bajo presión — antes de equilibrar sus tres cerebros.</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<!-- ── VECTORES — ESCALERA DE COMPROMISO ───────────────────────── -->
+<section id="vectores">
+  <div class="section-eyebrow">Cómo empezar</div>
+  <h2 class="section-title">Elija su <em>punto de entrada</em></h2>
+  <p class="section-sub">No hay un solo camino. Empiece donde le haga sentido — gratis, con un diagnóstico pagado, o directo al programa que necesita.</p>
+
+  <div class="ladder">
+
+    <a href="#" onclick="abrirTestModal(); return false;" class="vcard v-c">
+      <div class="vcard-icon">📝</div>
+      <div class="vcard-body">
+        <div class="vlabel">Vector C · Gratis</div>
+        <h3>Test Triádico Ejecutivo</h3>
+        <p>9 preguntas. Una primera idea de cuál de sus tres cerebros domina cuando decide bajo presión.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$0</div>
+        <div class="note">5 minutos</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20soy%20emprendedor%20y%20me%20interesa%20el%20Autodiagn%C3%B3stico%20Tricerebral%20por%20%2415%20USD." target="_blank" class="vcard v-c">
+      <div class="vcard-icon">🌱</div>
+      <div class="vcard-body">
+        <div class="vlabel">Vector C+ · Para emprendedores</div>
+        <h3>Autodiagnóstico Tricerebral para Emprendedores</h3>
+        <p>Versión guiada del CT adaptada a negocios unipersonales, con interpretación en video y plan de cultivo de 30 días.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$15</div>
+        <div class="note">autoguiado</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5LGImgC-yU_ahxamWIdy3mwzaKPtmPJQFppSPnebH1lv44Q/viewform?usp=header" target="_blank" class="vcard v-d">
+      <div class="vcard-icon">🧭</div>
+      <div class="vcard-body">
+        <div class="vlabel">Vector D · Diagnóstico completo</div>
+        <h3>CT — Revelador del Cociente Triádico</h3>
+        <p>27 preguntas. El instrumento original de Waldemar de Gregori con informe personalizado de 6 páginas.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$25</div>
+        <div class="note">informe en 24h</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+    <a href="#" onclick="abrirKitModal(); return false;" class="vcard v-e">
+      <div class="vcard-icon">📦</div>
+      <div class="vcard-body">
+        <div class="vlabel">Vector E · Aplicación autónoma</div>
+        <h3>Kit Digital GT-OI</h3>
+        <p>5 documentos para aplicar el método completo por su cuenta, sin sesiones con el Dr. Armas.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$45</div>
+        <div class="note">pago único</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20me%20interesa%20el%20Taller%20GT-OI%20para%20mi%20equipo.%20Quisiera%20saber%20cu%C3%A1l%20variante%20me%20conviene." target="_blank" class="vcard v-a">
+      <div class="vcard-icon">👥</div>
+      <div class="vcard-body">
+        <div class="vlabel">Vector A · Para equipos</div>
+        <h3>Taller GT-OI (3 variantes)</h3>
+        <p>4 horas presenciales con su equipo directivo completo, hasta 12 personas. Elija el enfoque: <strong>Decidir bien bajo presión</strong> · <strong>Adaptabilidad ante la incertidumbre</strong> · <strong>Modelos mentales y cambio cultural</strong>. Mismo formato, mismo precio — usted elige el contenido según su necesidad actual.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$600</div>
+        <div class="note">grupo cerrado / $65 x persona</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20me%20interesa%20el%20programa%20de%20Mentor%C3%ADa%20%E2%80%9CDirectivo%20Tricerebral%E2%80%9D%20(%24350%2Fmes%2C%203%20meses).%20Quisiera%20agendar%20la%20conversaci%C3%B3n%20de%20diagn%C3%B3stico%20gratuita." target="_blank" class="vcard v-b">
+      <div class="vcard-icon">🎯</div>
+      <div class="vcard-body">
+        <div class="vlabel">Vector B · Para usted</div>
+        <h3>Mentoría «Directivo Tricerebral»</h3>
+        <p>3 meses de acompañamiento individual, el proceso más profundo del modelo GT-OI. Al finalizar, puede extenderlo con un 4° mes enfocado en <strong>Liderazgo Tricerebral Integrado</strong> (mismo precio mensual).</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$350<span style="font-size:13px">/mes</span></div>
+        <div class="note">3 meses · $1.050 total</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── LÍNEA INSTITUCIONAL B2B ──────────────────────────────────── -->
+<section id="institucional">
+  <div class="section-eyebrow">Para organizaciones</div>
+  <h2 class="section-title">Línea <em>institucional</em></h2>
+  <p class="section-sub">Programas de formación extendida y consultoría para universidades, gremios y empresas que quieren instalar el modelo GT-OI de forma estructurada. Contacto directo, fuera del embudo de autoservicio.</p>
+
+  <div class="ladder">
+
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20represento%20a%20una%20instituci%C3%B3n%20interesada%20en%20el%20Diplomado%20GT-OI." target="_blank" class="vcard v-d">
+      <div class="vcard-icon">🎓</div>
+      <div class="vcard-body">
+        <div class="vlabel">Línea B2B · Formación extendida</div>
+        <h3>Diplomado GT-OI</h3>
+        <p>8 módulos a distancia + 2 sesiones sincrónicas grupales. Para universidades, gremios y empresas que forman cohortes.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$65</div>
+        <div class="note">por persona · mín. 8</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20mi%20empresa%20est%C3%A1%20interesada%20en%20la%20Formaci%C3%B3n%20de%20Facilitadores%20Internos%20GT-OI." target="_blank" class="vcard v-e">
+      <div class="vcard-icon">🧑‍🏫</div>
+      <div class="vcard-body">
+        <div class="vlabel">Línea B2B · Capacidad interna</div>
+        <h3>Formación de Facilitadores Internos</h3>
+        <p>Transferimos el CT y el CCT de Gregori (citados) a su equipo de RRHH, con licencia de uso y acompañamiento de 30 días.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$2,200</div>
+        <div class="note">incluye kit + licencia 1 año</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20mi%20organizaci%C3%B3n%20est%C3%A1%20interesada%20en%20la%20Auditor%C3%ADa%20Tricerebral%20Organizacional." target="_blank" class="vcard v-c">
+      <div class="vcard-icon">🔍</div>
+      <div class="vcard-body">
+        <div class="vlabel">Línea B2B · Diagnóstico institucional</div>
+        <h3>Auditoría Tricerebral Organizacional</h3>
+        <p>Diagnóstico de 3 semanas a nivel de subsistemas organizacionales, con la Ley de la Proporcionalidad de Gregori aplicada a la institución completa.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">$1,500</div>
+        <div class="note">ajustable según tamaño</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── COMPARATIVA DE DIAGNÓSTICOS ─────────────────────────────── -->
+<div class="compare-wrap" id="diagnosticos">
+  <div class="compare-inner">
+    <div class="section-eyebrow">¿Cuál diagnóstico es para usted?</div>
+    <h2 class="section-title">Dos formas de <em>conocer su perfil</em></h2>
+    <p class="section-sub">Ambos miden las mismas tres inteligencias. La diferencia está en la profundidad y en qué tan personalizado es el resultado.</p>
+
+    <div class="compare-grid">
+      <div class="cdiag">
+        <h3>Test Triádico Ejecutivo</h3>
+        <div class="cprice">Gratis</div>
+        <div class="cprice-note">9 preguntas · 5 minutos · resultado inmediato</div>
+        <ul>
+          <li>3 preguntas por cada uno de los tres cerebros</li>
+          <li>3 situaciones de opción múltiple</li>
+          <li>Primera lectura orientativa de su perfil</li>
+          <li>Sin informe personalizado — usted mismo interpreta su resultado</li>
+          <li>Ideal para: curiosidad inicial, antes de decidir si invertir en el diagnóstico completo</li>
+        </ul>
+        <a href="#" onclick="abrirTestModal(); return false;" class="cbtn">Hacer el test gratis</a>
+      </div>
+
+      <div class="cdiag featured">
+        <div class="cdiag-badge">Diagnóstico completo</div>
+        <h3>CT — Cociente Triádico</h3>
+        <div class="cprice">$25 USD</div>
+        <div class="cprice-note">27 preguntas · informe personalizado en 24h</div>
+        <ul>
+          <li>9 preguntas por cada uno de los tres cerebros — el instrumento original de Gregori</li>
+          <li>Aplica la Ley de la Proporcionalidad: detecta si sus cerebros se anulan o se desequilibran</li>
+          <li>Informe en PDF de 6 páginas, redactado y revisado personalmente por el Dr. Armas</li>
+          <li>Incluye su perfil dominante, subdominante, débil, y qué calibrar primero</li>
+          <li>Ideal para: quien ya quiere un resultado preciso para tomar una decisión real</li>
+        </ul>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5LGImgC-yU_ahxamWIdy3mwzaKPtmPJQFppSPnebH1lv44Q/viewform?usp=header" target="_blank" class="cbtn">Hacer el diagnóstico completo</a>
+      </div>
+    </div>
+
+    <p class="compare-arrow-note">La mayoría empieza por el test gratuito. Si el resultado le interesa, <strong>el diagnóstico completo</strong> es el siguiente paso natural — y su costo se descuenta del Taller o la Mentoría si decide continuar.</p>
+  </div>
+</div>
+
+<!-- ── CÓMO FUNCIONA — FLUJO ───────────────────────────────────── -->
+<section>
+  <div class="section-eyebrow">El camino completo</div>
+  <h2 class="section-title">De la curiosidad a la <em>decisión correcta</em></h2>
+  <div class="flow-strip">
+    <div class="flow-step"><span class="fnum">1</span> Test gratis</div>
+    <span class="flow-sep">→</span>
+    <div class="flow-step"><span class="fnum">2</span> Diagnóstico $25</div>
+    <span class="flow-sep">→</span>
+    <div class="flow-step"><span class="fnum">3</span> Kit o programa</div>
+    <span class="flow-sep">→</span>
+    <div class="flow-step"><span class="fnum">4</span> Resultados reales</div>
+  </div>
+
+  <div class="photo-strip">
+    <figure>
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80" alt="Equipo directivo reunido alrededor de una mesa, en plena discusión" loading="lazy">
+      <figcaption>El equipo que decide en conjunto, no uno solo por todos</figcaption>
+    </figure>
+    <figure>
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80" alt="Directivos analizando datos y gráficos en una sesión de trabajo" loading="lazy">
+      <figcaption>Datos, intuición y acción — las tres voces en la sala</figcaption>
+    </figure>
+    <figure>
+      <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=700&q=80" alt="Líder explicando una estrategia a su equipo en una pizarra" loading="lazy">
+      <figcaption>Un método compartido cambia cómo conversa el equipo</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ── AUTOR ────────────────────────────────────────────────────── -->
+<section id="autor">
+  <div class="section-eyebrow">El método</div>
+  <h2 class="section-title">Un modelo con <em>respaldo doctoral</em></h2>
+
+  <div class="author-wrap">
+    <div class="author-card">
+      <h3>Dr. Félix Arturo Armas</h3>
+      <div class="role">Doctor en Gerencia Avanzada · UNELLEZ</div>
+      <ul>
+        <li>Tesis aprobada con Mención Honorífica y Mención Publicación, julio 2025</li>
+        <li>Autor del modelo GT-OI: Gestión Tricerebral aplicada a Organizaciones Inteligentes</li>
+        <li>Formación en Cibernética Social</li>
+        <li>Investigación basada en Gregori, Senge y Morin</li>
+        <li>Araure, Estado Portuguesa, Venezuela</li>
+      </ul>
+    </div>
+    <div class="author-bio">
+      <p>El modelo GT-OI integra la <strong>Teoría Tricerebral</strong> de Waldemar de Gregori con la teoría de las <strong>Organizaciones Inteligentes</strong> de Peter Senge y el <strong>Pensamiento Complejo</strong> de Edgar Morin.</p>
+      <p>Cada instrumento de diagnóstico —el Test gratuito y el CT completo— mide las mismas tres inteligencias que Gregori documentó: la <strong>lógico-analítica</strong>, la <strong>operativa-pragmática</strong> y la <strong>intuitivo-emocional</strong>. Lo que cambia entre un producto y otro es la profundidad de la medición, no el método.</p>
+      <p>Cada sesión —ya sea un taller, una mentoría o la revisión de un informe— la conduce personalmente el mismo investigador que desarrolló el modelo.</p>
+    </div>
+  </div>
+
+  <div class="gregori-credit">
+    <div class="gc-label">Fuente original del método</div>
+    <h4>Waldemar de Gregori</h4>
+    <p>Toda la base diagnóstica de GT-OI —el CT, la Ley de la Proporcionalidad y el Ciclo Cibernético de Transformación— proviene de la obra de <strong>Waldemar de Gregori</strong>, sociólogo brasileño, creador de la <strong>Teoría Tricerebral</strong> y de la <strong>Cibernética Social</strong>. El Dr. Armas aplica estos instrumentos con fidelidad a sus fuentes originales y los integra al contexto de la gestión organizacional contemporánea.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER CTA ───────────────────────────────────────────────── -->
+<div class="footer-cta" id="contacto">
+  <h2>¿No está seguro por dónde <em>empezar</em>?</h2>
+  <p>Escríbale directamente al Dr. Armas. Una conversación de 10 minutos suele ser suficiente para saber cuál camino le conviene.</p>
+  <div class="btn-row">
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20vi%20la%20p%C3%A1gina%20de%20GT-OI%20y%20no%20estoy%20seguro%20por%20d%C3%B3nde%20empezar.%20%C2%BFMe%20puede%20orientar%3F" target="_blank" class="btn btn-primary" style="background:#B8922A;color:#0D2545;">Escribir por WhatsApp</a>
+    <a href="mailto:felixarmas@gmail.com?subject=Consulta%20GT-OI" class="btn btn-ghost" style="border-color:rgba(247,244,238,0.5);color:#F7F4EE;">Enviar correo</a>
+  </div>
+</div>
+
+<!-- ── MODAL: TEST TRIÁDICO EMBEBIDO ───────────────────────────── -->
+<div class="test-modal-overlay" id="testModalOverlay" onclick="if(event.target===this) cerrarTestModal()">
+  <div class="test-modal" role="dialog" aria-labelledby="testModalTitle" aria-modal="true">
+    <div class="test-modal-head">
+      <div>
+        <h3 id="testModalTitle">Test Triádico Ejecutivo</h3>
+        <p>9 preguntas · 5 minutos · resultado al instante</p>
+      </div>
+      <button class="test-modal-close" onclick="cerrarTestModal()" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="testModalBody" class="test-app"></div>
+  </div>
+</div>
+
+<!-- ── MODAL: KIT DIGITAL — PEDIDO ─────────────────────────────── -->
+<div class="test-modal-overlay" id="kitModalOverlay" onclick="if(event.target===this) cerrarKitModal()">
+  <div class="test-modal" style="max-width:480px;" role="dialog" aria-labelledby="kitModalTitle" aria-modal="true">
+    <div class="test-modal-head">
+      <div>
+        <h3 id="kitModalTitle">Kit Digital GT-OI</h3>
+        <p>5 documentos para aplicar el método por su cuenta</p>
+      </div>
+      <button class="test-modal-close" onclick="cerrarKitModal()" aria-label="Cerrar">✕</button>
+    </div>
+    <form class="kit-form" onsubmit="enviarPedidoKit(event)">
+      <p class="intro">Complete sus datos y le abrimos WhatsApp con un mensaje listo para coordinar el pago de <strong>$45 USD</strong>. El Dr. Armas le envía los 5 documentos apenas confirme.</p>
+      <div class="kit-field">
+        <label for="kitNombre">Nombre completo</label>
+        <input type="text" id="kitNombre" required placeholder="Su nombre">
+      </div>
+      <div class="kit-field">
+        <label for="kitEmail">Correo electrónico</label>
+        <input type="email" id="kitEmail" required placeholder="su@email.com">
+      </div>
+      <button type="submit" class="kit-submit">Continuar por WhatsApp →</button>
+      <p class="kit-price-note">Pago Móvil BDV o USDT · entrega apenas se confirme el pago</p>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>Dr. Félix Arturo Armas · Modelo GT-OI · Araure, Estado Portuguesa, Venezuela</p>
+  <p>felixarmas@gmail.com · +58 424-5981984 · RIF: V046060632</p>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// TEST TRIÁDICO EJECUTIVO — cálculo nativo (sin Google Forms)
+// Replica la lógica del CT — Revelador del Cociente Triádico:
+// suma independiente de CI, CC y CD, resultado mostrado al instante.
+// ════════════════════════════════════════════════════════════════
+const TEST_PREGUNTAS = [
+  { cerebro: 'ci', texto: 'Antes de tomar una decisión, necesito revisar los datos disponibles y evaluar las opciones con criterio lógico.', hint: 'Incluso bajo presión, busca información antes de actuar.' },
+  { cerebro: 'ci', texto: 'Cuando surge un problema en mi organización, lo primero que hago es identificar sus causas y analizar sus consecuencias.', hint: 'Tendencia natural al diagnóstico sistemático.' },
+  { cerebro: 'ci', texto: 'Me siento más seguro liderando cuando cuento con información precisa, indicadores concretos o un análisis previo.', hint: 'Necesidad de respaldo lógico para decidir con confianza.' },
+  { cerebro: 'cc', texto: 'Cuando la situación es crítica, mi primer impulso es actuar, organizar el equipo y poner en marcha una solución de inmediato.', hint: 'Respuesta operativa ante la urgencia.' },
+  { cerebro: 'cc', texto: 'Soy reconocido en mi entorno por ejecutar con rapidez y hacer que los proyectos se concreten, incluso en condiciones adversas.', hint: 'Fortaleza en la implementación y el liderazgo práctico.' },
+  { cerebro: 'cc', texto: 'Me incomoda cuando las reuniones se extienden sin llegar a decisiones concretas — prefiero acuerdos de acción con responsables y fechas.', hint: 'Orientación natural al resultado operativo.' },
+  { cerebro: 'cd', texto: 'Antes de decidir algo importante, me importa mucho cómo se siente el equipo — el clima emocional influye en mis decisiones.', hint: 'Lectura del ambiente relacional como insumo decisional.' },
+  { cerebro: 'cd', texto: 'Frecuentemente tengo intuiciones sobre el camino correcto a seguir, incluso cuando los datos no son suficientes.', hint: 'Confianza en la percepción intuitiva y la síntesis holística.' },
+  { cerebro: 'cd', texto: 'Para mí, una buena decisión debe considerar tanto los resultados esperados como el impacto en las personas involucradas.', hint: 'Integración de lo humano y lo estratégico en la gestión.' },
+];
+
+const TEST_SITUACIONES = [
+  { texto: 'Su equipo acaba de comunicarle que un proveedor clave falló y hay riesgo de parar la producción mañana.',
+    opciones: [
+      { letra: 'A', cerebro: 'ci', texto: 'Solicita un informe detallado con causas, alternativas y costos comparativos antes de decidir qué hacer.' },
+      { letra: 'B', cerebro: 'cc', texto: 'Convoca al equipo de inmediato, asigna responsables y activa el plan de contingencia en las próximas horas.' },
+      { letra: 'C', cerebro: 'cd', texto: 'Primero conversa con las personas clave para entender cómo están y qué necesitan antes de actuar.' },
+    ]},
+  { texto: 'Debe liderar una reunión para decidir si se lanza un nuevo producto en un mercado incierto.',
+    opciones: [
+      { letra: 'A', cerebro: 'ci', texto: 'Pide que se presenten datos del mercado, análisis de riesgo y proyecciones financieras antes de votar.' },
+      { letra: 'B', cerebro: 'cc', texto: 'Propone una decisión rápida con un plan piloto de 30 días para validar en la realidad.' },
+      { letra: 'C', cerebro: 'cd', texto: 'Escucha a cada integrante del equipo, recoge percepciones e intuiciones y busca el consenso.' },
+    ]},
+  { texto: 'Un colaborador clave renuncia de forma inesperada en plena etapa de un proyecto crítico.',
+    opciones: [
+      { letra: 'A', cerebro: 'ci', texto: 'Analiza el impacto en los indicadores del proyecto y evalúa opciones de reemplazo con esa información.' },
+      { letra: 'B', cerebro: 'cc', texto: 'Reorganiza el equipo de inmediato, redistribuye las tareas y mantiene el cronograma sin interrupciones.' },
+      { letra: 'C', cerebro: 'cd', texto: 'Tiene una conversación personal con el equipo para gestionar el impacto emocional antes de reestructurar.' },
+    ]},
+];
+
+const CEREBRO_INFO = {
+  ci: { nombre: 'Cerebro Izquierdo', sub: 'Lógico-Analítico', clase: 'ci',
+        desc: 'Decide con datos, estructura y análisis. Bajo presión, su riesgo es la parálisis por exceso de información.' },
+  cc: { nombre: 'Cerebro Central', sub: 'Operativo-Pragmático', clase: 'cc',
+        desc: 'Decide con velocidad y acción concreta. Bajo presión, su riesgo es actuar sin consultar al equipo.' },
+  cd: { nombre: 'Cerebro Derecho', sub: 'Intuitivo-Emocional', clase: 'cd',
+        desc: 'Decide leyendo el clima del equipo y su intuición. Bajo presión, su riesgo es decidir por percepción y no por hechos.' },
+};
+
+let testState = { paso: 0, respuestas: {}, situaciones: {} };
+const TOTAL_PASOS = TEST_PREGUNTAS.length + TEST_SITUACIONES.length; // 12
+
+function abrirTestModal() {
+  testState = { paso: 0, respuestas: {}, situaciones: {} };
+  document.getElementById('testModalOverlay').classList.add('open');
+  renderTestPaso();
+}
+
+function cerrarTestModal() {
+  document.getElementById('testModalOverlay').classList.remove('open');
+}
+
+function renderProgress() {
+  let html = '<div class="test-progress">';
+  for (let i = 0; i < TOTAL_PASOS; i++) {
+    html += `<span class="${i < testState.paso ? 'done' : ''}"></span>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderTestPaso() {
+  const body = document.getElementById('testModalBody');
+  const paso = testState.paso;
+
+  if (paso < TEST_PREGUNTAS.length) {
+    const q = TEST_PREGUNTAS[paso];
+    const seleccion = testState.respuestas[paso];
+    const labelMap = { ci: 'Cerebro Izquierdo · Lógico-Analítico', cc: 'Cerebro Central · Operativo-Pragmático', cd: 'Cerebro Derecho · Intuitivo-Emocional' };
+    let escalaHtml = '<div class="test-scale">';
+    const etiquetas = ['Casi nunca', 'Pocas veces', 'A veces', 'Frecuente', 'Me describe'];
+    for (let v = 1; v <= 5; v++) {
+      escalaHtml += `<button onclick="seleccionarEscala(${paso},${v})" class="${seleccion===v?'selected':''}">
+        <span class="tnum">${v}</span><span class="tlbl">${etiquetas[v-1]}</span></button>`;
+    }
+    escalaHtml += '</div>';
+
+    body.innerHTML = `
+      ${renderProgress()}
+      <div class="test-q-label ${q.cerebro}">Pregunta ${paso+1} de 9 · ${labelMap[q.cerebro]}</div>
+      <div class="test-q-text">${q.texto}</div>
+      <div class="test-q-hint">${q.hint}</div>
+      ${escalaHtml}
+      <div class="test-nav">
+        <button class="test-btn-back" onclick="testAnterior()" ${paso===0?'style="visibility:hidden"':''}>← Anterior</button>
+        <button class="test-btn-next" onclick="testSiguiente()" ${seleccion?'':'disabled'}>Continuar →</button>
+      </div>`;
+  } else {
+    const sIdx = paso - TEST_PREGUNTAS.length;
+    const s = TEST_SITUACIONES[sIdx];
+    const seleccion = testState.situaciones[sIdx];
+    let opsHtml = '';
+    s.opciones.forEach(op => {
+      opsHtml += `<button class="test-situation-opt ${seleccion===op.letra?'selected':''}" onclick="seleccionarSituacion(${sIdx},'${op.letra}')">
+        <b>${op.letra})</b>${op.texto}</button>`;
+    });
+    body.innerHTML = `
+      ${renderProgress()}
+      <div class="test-q-label" style="color:var(--dorado)">Situación ${sIdx+1} de 3</div>
+      <div class="test-q-text">${s.texto}</div>
+      <div class="test-q-hint">Elija la opción que más refleje su reacción espontánea.</div>
+      <div style="margin-bottom:24px;">${opsHtml}</div>
+      <div class="test-nav">
+        <button class="test-btn-back" onclick="testAnterior()">← Anterior</button>
+        <button class="test-btn-next" onclick="testSiguiente()" ${seleccion?'':'disabled'}>${sIdx===2?'Ver mi resultado →':'Continuar →'}</button>
+      </div>`;
+  }
+}
+
+function seleccionarEscala(paso, valor) {
+  testState.respuestas[paso] = valor;
+  renderTestPaso();
+}
+function seleccionarSituacion(idx, letra) {
+  testState.situaciones[idx] = letra;
+  renderTestPaso();
+}
+function testAnterior() {
+  if (testState.paso > 0) { testState.paso--; renderTestPaso(); }
+}
+function testSiguiente() {
+  if (testState.paso < TOTAL_PASOS - 1) { testState.paso++; renderTestPaso(); }
+  else { mostrarResultadoTest(); }
+}
+
+function mostrarResultadoTest() {
+  const sumas = { ci: 0, cc: 0, cd: 0 };
+  TEST_PREGUNTAS.forEach((q, i) => { sumas[q.cerebro] += (testState.respuestas[i] || 0); });
+
+  const conteoSit = { ci: 0, cc: 0, cd: 0 };
+  Object.values(testState.situaciones).forEach(letra => {
+    const map = { A: 'ci', B: 'cc', C: 'cd' };
+    conteoSit[map[letra]]++;
+  });
+
+  const max = Math.max(sumas.ci, sumas.cc, sumas.cd);
+  const dominanteKey = sumas.ci === max ? 'ci' : (sumas.cc === max ? 'cc' : 'cd');
+  const dom = CEREBRO_INFO[dominanteKey];
+
+  const body = document.getElementById('testModalBody');
+  body.innerHTML = `
+    <div class="test-result">
+      <h4>Su resultado está listo</h4>
+      <p class="res-sub">Puntaje por cerebro (máximo 15 cada uno) + patrón de sus 3 situaciones</p>
+      <div class="test-result-bars">
+        ${['ci','cc','cd'].map(k => `
+          <div class="res-row res-${k}">
+            <div class="res-row-head"><span>${CEREBRO_INFO[k].nombre} · ${CEREBRO_INFO[k].sub}</span><span>${sumas[k]} / 15</span></div>
+            <div class="res-bar-track"><div class="res-bar-fill" id="bar-${k}"></div></div>
+          </div>`).join('')}
+      </div>
+      <div class="test-dominant">
+        <div class="dom-label">Su perfil dominante</div>
+        <div class="dom-value">${dom.nombre} — ${dom.sub}</div>
+        <div class="dom-desc">${dom.desc} En sus situaciones directivas, eligió esta reacción ${conteoSit[dominanteKey]} de 3 veces.</div>
+      </div>
+      <a href="https://wa.me/584245981984?text=${encodeURIComponent('Hola Dr. Armas, hice el Test Triádico Ejecutivo. Mi resultado: CI='+sumas.ci+', CC='+sumas.cc+', CD='+sumas.cd+'. Quiero saber más sobre el diagnóstico completo.')}"
+         target="_blank" class="btn btn-primary">Profundizar con el CT completo ($25) →</a>
+    </div>`;
+
+  // animar barras tras pintar el DOM
+  requestAnimationFrame(() => {
+    ['ci','cc','cd'].forEach(k => {
+      const el = document.getElementById('bar-'+k);
+      if (el) el.style.width = Math.round((sumas[k]/15)*100) + '%';
+    });
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { cerrarTestModal(); cerrarKitModal(); }
+});
+
+// ════════════════════════════════════════════════════════════════
+// KIT DIGITAL GT-OI — Vector E (versión intermedia: form + WhatsApp)
+// ════════════════════════════════════════════════════════════════
+function abrirKitModal() {
+  document.getElementById('kitModalOverlay').classList.add('open');
+}
+function cerrarKitModal() {
+  document.getElementById('kitModalOverlay').classList.remove('open');
+}
+function enviarPedidoKit(event) {
+  event.preventDefault();
+  const nombre = document.getElementById('kitNombre').value.trim();
+  const email = document.getElementById('kitEmail').value.trim();
+  if (!nombre || !email) return;
+
+  const mensaje = `Hola Dr. Armas, soy ${nombre} (${email}). Quiero el Kit Digital GT-OI por $45 USD.`;
+  const url = `https://wa.me/584245981984?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+  cerrarKitModal();
+}
+</script>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const target = document.querySelector(id);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+});
+</script>
+</body>
+</html>
