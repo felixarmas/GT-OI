@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directivo Tricerebral — Dr. Félix Arturo Armas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul:    #0E2040;
+    --azul2:   #1C3D6E;
+    --azulc:   #2A5BAD;
+    --acento:  #C8A96E;
+    --acento2: #E8D5A3;
+    --blanco:  #F7F4EE;
+    --gris:    #6B6456;
+    --gris2:   #A09480;
+    --linea:   rgba(200,169,110,0.25);
+    --fondo:   #0A1829;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--fondo);
+    color: var(--blanco);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 5% 60px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(28,61,110,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(200,169,110,0.08) 0%, transparent 60%),
+      var(--fondo);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg, transparent, transparent 59px,
+        rgba(200,169,110,0.04) 59px, rgba(200,169,110,0.04) 60px
+      ),
+      repeating-linear-gradient(
+        90deg, transparent, transparent 59px,
+        rgba(200,169,110,0.04) 59px, rgba(200,169,110,0.04) 60px
+      );
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--acento);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 1.02;
+    color: var(--blanco);
+    max-width: 820px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--acento);
+  }
+
+  .hero-subtitle {
+    margin-top: 28px;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 300;
+    color: var(--acento2);
+    max-width: 560px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-cta-row {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+
+  .btn-primary {
+    background: var(--acento);
+    color: var(--azul);
+    padding: 16px 36px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--acento2); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--acento);
+    padding: 16px 36px;
+    border: 1px solid var(--acento);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(200,169,110,0.08); }
+
+  .hero-credential {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--linea);
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .cred-item { }
+  .cred-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--acento);
+    line-height: 1;
+  }
+  .cred-label {
+    font-size: 12px;
+    color: var(--gris2);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTIONS ────────────────────────────────────────────────────── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 50px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--blanco);
+    max-width: 700px;
+  }
+
+  .section-title em { font-style: italic; color: var(--acento); }
+
+  /* ── DOLOR ───────────────────────────────────────────────────────── */
+  .dolor { background: var(--azul); }
+
+  .dolor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 60px;
+    background: var(--linea);
+  }
+
+  .dolor-item {
+    background: var(--azul);
+    padding: 36px 32px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .dolor-item:hover { background: rgba(28,61,110,0.8); }
+
+  .dolor-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--linea);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .dolor-text {
+    font-size: 16px;
+    color: var(--acento2);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .dolor-text strong { color: var(--blanco); font-weight: 500; }
+
+  .dolor-conclusion {
+    margin-top: 60px;
+    padding: 40px;
+    border-left: 3px solid var(--acento);
+    background: rgba(200,169,110,0.05);
+  }
+
+  .dolor-conclusion p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-style: italic;
+    color: var(--acento2);
+    line-height: 1.5;
+    max-width: 680px;
+  }
+
+  /* ── SOLUCIÓN ────────────────────────────────────────────────────── */
+  .solucion { background: var(--fondo); }
+
+  .tres-cerebros {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--linea);
+  }
+
+  .cerebro-card {
+    background: var(--fondo);
+    padding: 48px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .cerebro-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .cerebro-card.analitico::before { background: #4A90D9; }
+  .cerebro-card.emocional::before { background: #C8507A; }
+  .cerebro-card.operativo::before { background: #4BAD7A; }
+
+  .cerebro-card:hover { background: rgba(28,61,110,0.3); }
+
+  .cerebro-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .cerebro-nombre {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .cerebro-card.analitico .cerebro-nombre { color: #4A90D9; }
+  .cerebro-card.emocional .cerebro-nombre { color: #C8507A; }
+  .cerebro-card.operativo .cerebro-nombre { color: #4BAD7A; }
+
+  .cerebro-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .cerebro-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gris2);
+    line-height: 1.7;
+  }
+
+  .solucion-bottom {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .solucion-copy p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--acento2);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .solucion-copy p strong { color: var(--blanco); font-weight: 500; }
+
+  .diferencia-box {
+    background: var(--azul);
+    padding: 40px;
+    border: 1px solid var(--linea);
+  }
+
+  .diferencia-titulo {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 24px;
+  }
+
+  .diferencia-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--linea);
+  }
+  .diferencia-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .dif-nope {
+    font-size: 13px;
+    color: #E87070;
+    flex: 1;
+    font-weight: 300;
+  }
+  .dif-sep { color: var(--gris); font-size: 13px; }
+  .dif-si {
+    font-size: 13px;
+    color: #7ACA9A;
+    flex: 1;
+    font-weight: 400;
+  }
+
+  /* ── PROGRAMA ────────────────────────────────────────────────────── */
+  .programa { background: var(--azul); }
+
+  .meses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--linea);
+  }
+
+  .mes-card {
+    background: var(--azul);
+    padding: 44px 32px;
+  }
+
+  .mes-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--linea);
+    line-height: 1;
+    margin-bottom: -8px;
+  }
+
+  .mes-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--acento);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  .mes-items { list-style: none; }
+  .mes-items li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--acento2);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--linea);
+    display: flex;
+    gap: 12px;
+    line-height: 1.5;
+  }
+  .mes-items li:last-child { border-bottom: none; }
+  .mes-items li::before {
+    content: '→';
+    color: var(--acento);
+    font-size: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .incluido-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 2px;
+    background: var(--linea);
+  }
+
+  .incluido-item {
+    background: rgba(10,24,41,0.6);
+    padding: 28px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .inc-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .inc-titulo {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--blanco);
+    margin-bottom: 6px;
+  }
+
+  .inc-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gris2);
+    line-height: 1.6;
+  }
+
+  /* ── QUIÉN ───────────────────────────────────────────────────────── */
+  .quien { background: var(--fondo); }
+
+  .quien-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .quien-card {
+    background: var(--azul);
+    padding: 40px;
+    border-top: 3px solid var(--acento);
+  }
+
+  .quien-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .quien-cargo {
+    font-size: 13px;
+    color: var(--acento);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-bottom: 28px;
+  }
+
+  .quien-credenciales { list-style: none; }
+  .quien-credenciales li {
+    font-size: 13px;
+    color: var(--acento2);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--linea);
+    display: flex;
+    gap: 12px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .quien-credenciales li:last-child { border-bottom: none; }
+  .quien-credenciales li::before {
+    content: '✦';
+    color: var(--acento);
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .quien-bio p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--acento2);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .quien-bio p strong { color: var(--blanco); font-weight: 500; }
+
+  .quien-quote {
+    margin-top: 36px;
+    padding: 32px;
+    border-left: 3px solid var(--acento);
+    background: rgba(200,169,110,0.05);
+  }
+
+  .quien-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--acento2);
+    line-height: 1.6;
+    margin-bottom: 0 !important;
+  }
+
+  /* ── PARA QUIÉN ──────────────────────────────────────────────────── */
+  .paraquien { background: var(--azul); }
+
+  .paraquien-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--linea);
+  }
+
+  .pq-card {
+    background: var(--azul);
+    padding: 36px;
+  }
+
+  .pq-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .pq-card.si .pq-header { color: #7ACA9A; }
+  .pq-card.no .pq-header { color: #E87070; }
+
+  .pq-list { list-style: none; }
+  .pq-list li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--acento2);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--linea);
+    display: flex;
+    gap: 12px;
+    line-height: 1.5;
+  }
+  .pq-list li:last-child { border-bottom: none; }
+
+  .pq-card.si .pq-list li::before { content: '✓'; color: #7ACA9A; flex-shrink: 0; }
+  .pq-card.no .pq-list li::before { content: '✗'; color: #E87070; flex-shrink: 0; }
+
+  /* ── INVERSION ───────────────────────────────────────────────────── */
+  .inversion {
+    background:
+      radial-gradient(ellipse 70% 50% at 30% 50%, rgba(28,61,110,0.6) 0%, transparent 70%),
+      var(--fondo);
+  }
+
+  .inv-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .inv-detalle { }
+
+  .inv-precio-box {
+    background: var(--azul);
+    border: 1px solid var(--linea);
+    border-top: 3px solid var(--acento);
+    padding: 48px 40px;
+    position: sticky;
+    top: 40px;
+  }
+
+  .inv-precio-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 12px;
+  }
+
+  .inv-precio {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--blanco);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .inv-precio-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gris2);
+    margin-bottom: 32px;
+  }
+
+  .inv-pago-plan {
+    background: rgba(200,169,110,0.06);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--linea);
+  }
+
+  .inv-pago-titulo {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--acento);
+    margin-bottom: 8px;
+  }
+
+  .inv-pago-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--acento2);
+    line-height: 1.6;
+  }
+
+  .inv-cta {
+    display: block;
+    width: 100%;
+    background: var(--acento);
+    color: var(--azul);
+    padding: 18px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+  .inv-cta:hover { background: var(--acento2); }
+
+  .inv-nota {
+    font-size: 12px;
+    color: var(--gris2);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .inv-incluye { }
+
+  .inv-incluye-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 24px;
+  }
+
+  .inv-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--linea);
+  }
+  .inv-item:first-child { padding-top: 0; }
+
+  .inv-item-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .inv-item-titulo {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--blanco);
+    margin-bottom: 4px;
+  }
+
+  .inv-item-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gris2);
+    line-height: 1.6;
+  }
+
+  /* ── CTA FINAL ───────────────────────────────────────────────────── */
+  .cta-final {
+    background: var(--azul2);
+    padding: 100px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 700;
+    color: var(--blanco);
+    max-width: 680px;
+    margin: 0 auto 16px;
+    line-height: 1.2;
+  }
+
+  .cta-final h2 em { font-style: italic; color: var(--acento); }
+
+  .cta-final p {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--acento2);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .cta-final .btn-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .cta-firma {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--linea);
+    font-size: 14px;
+    color: var(--gris2);
+    font-weight: 300;
+  }
+
+  .cta-firma strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--acento);
+    margin-bottom: 4px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────── */
+  footer {
+    background: var(--fondo);
+    padding: 32px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--linea);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--gris2);
+    font-weight: 300;
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .dolor-grid,
+    .tres-cerebros,
+    .meses-grid,
+    .paraquien-grid,
+    .solucion-bottom,
+    .quien-inner,
+    .inv-grid { grid-template-columns: 1fr; }
+    .incluido-grid { grid-template-columns: 1fr; }
+    .inv-precio-box { position: static; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .hero { padding: 80px 5% 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-eyebrow">Programa de Mentoría Individual · Dr. Félix Arturo Armas</div>
+  <h1 class="hero-title">
+    Decidir bien <em>bajo presión</em> no es talento. Es un método.
+  </h1>
+  <p class="hero-subtitle">
+    El primer programa de mentoría directiva basado en el modelo GT-OI: neurociencias, organizaciones inteligentes y pensamiento complejo, aplicados a su realidad gerencial concreta.
+  </p>
+  <div class="hero-cta-row">
+    <a href="#inversion" class="btn-primary">Quiero saber si aplica para mí</a>
+    <a href="#programa" class="btn-ghost">Ver el programa</a>
+  </div>
+  <div class="hero-credential">
+    <div class="cred-item">
+      <div class="cred-val">4 años</div>
+      <div class="cred-label">de investigación doctoral</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-val">Mención Honorífica</div>
+      <div class="cred-label">UNELLEZ · julio 2025</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-val">GT-OI</div>
+      <div class="cred-label">Modelo propio · avalado académicamente</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-val">3 meses</div>
+      <div class="cred-label">de acompañamiento individual</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DOLOR ──────────────────────────────────────────────────────────── -->
+<section class="dolor">
+  <div class="section-label">El problema real</div>
+  <h2 class="section-title">Lo que nadie le dice sobre <em>las decisiones de su equipo</em></h2>
+
+  <div class="dolor-grid">
+    <div class="dolor-item">
+      <div class="dolor-num">01</div>
+      <p class="dolor-text">Su equipo no falla por falta de experiencia. Falla porque <strong>bajo presión, cada persona activa un cerebro diferente</strong> — y nadie lo ha nombrado ni calibrado.</p>
+    </div>
+    <div class="dolor-item">
+      <div class="dolor-num">02</div>
+      <p class="dolor-text">El directivo analítico <strong>se paraliza cuando los datos son incompletos.</strong> El directivo emocional <strong>queda atrapado en el conflicto interpersonal.</strong> El directivo operativo <strong>actúa sin consultar.</strong></p>
+    </div>
+    <div class="dolor-item">
+      <div class="dolor-num">03</div>
+      <p class="dolor-text">Las reuniones importantes terminan con <strong>la decisión del que más habla</strong>, no la mejor decisión posible. Y ese patrón se repite.</p>
+    </div>
+    <div class="dolor-item">
+      <div class="dolor-num">04</div>
+      <p class="dolor-text">Los programas de liderazgo genéricos no resuelven esto. <strong>Le dan teoría desconectada de su contexto, de su sector, de la realidad venezolana.</strong> Y el lunes siguiente, todo igual.</p>
+    </div>
+  </div>
+
+  <div class="dolor-conclusion">
+    <p>El costo de ese desequilibrio no siempre aparece en la contabilidad. Pero se refleja en decisiones postergadas, equipos desalineados y oportunidades que se cierran antes de ser aprovechadas.</p>
+  </div>
+</section>
+
+<!-- ── SOLUCIÓN ───────────────────────────────────────────────────────── -->
+<section class="solucion">
+  <div class="section-label">La solución</div>
+  <h2 class="section-title">El modelo GT-OI: <em>los tres cerebros del directivo</em></h2>
+
+  <div class="tres-cerebros">
+    <div class="cerebro-card analitico">
+      <div class="cerebro-icon">🧠</div>
+      <div class="cerebro-nombre">Cerebro Izquierdo</div>
+      <div class="cerebro-titulo">Inteligencia Analítica</div>
+      <p class="cerebro-desc">Procesa datos, estructura la información, evalúa riesgos con lógica. Esencial para la planificación estratégica. Cuando domina en exceso: paraliza bajo incertidumbre.</p>
+    </div>
+    <div class="cerebro-card emocional">
+      <div class="cerebro-icon">❤️</div>
+      <div class="cerebro-nombre">Cerebro Derecho</div>
+      <div class="cerebro-titulo">Inteligencia Emocional</div>
+      <p class="cerebro-desc">Lee el clima del equipo, construye cohesión, inspira. Esencial para el liderazgo. Cuando domina en exceso: toma decisiones basadas en percepciones, no en hechos.</p>
+    </div>
+    <div class="cerebro-card operativo">
+      <div class="cerebro-icon">⚡</div>
+      <div class="cerebro-nombre">Cerebro Central</div>
+      <div class="cerebro-titulo">Inteligencia Operativa</div>
+      <p class="cerebro-desc">Actúa con rapidez, gestiona crisis, ejecuta. Esencial bajo presión. Cuando domina en exceso: reacciona sin reflexión y toma decisiones sin consultar.</p>
+    </div>
+  </div>
+
+  <div class="solucion-bottom">
+    <div class="solucion-copy">
+      <p>El modelo GT-OI — desarrollado durante cuatro años de investigación doctoral en la UNELLEZ y aprobado con <strong>Mención Honorífica y Mención Publicación</strong> en julio de 2025 — integra estos tres sistemas con las disciplinas del aprendizaje organizacional de Peter Senge y el pensamiento complejo de Edgar Morin.</p>
+      <p>El resultado no es una teoría más. Es un <strong>método diagnóstico y de intervención</strong> que permite conocer el perfil de decisión de cada directivo, identificar los patrones de desequilibrio del equipo, y calibrar las tres inteligencias de manera proporcional.</p>
+      <p>Lo que ningún programa genérico de liderazgo ofrece: <strong>un método con base científica propia, aplicado a su realidad concreta, por el mismo investigador que lo desarrolló.</strong></p>
+    </div>
+    <div class="diferencia-box">
+      <div class="diferencia-titulo">GT-OI vs. formación convencional</div>
+      <div class="diferencia-row">
+        <span class="dif-nope">Teorías sin respaldo empírico propio</span>
+        <span class="dif-sep">↔</span>
+        <span class="dif-si">Modelo doctoral avalado académicamente</span>
+      </div>
+      <div class="diferencia-row">
+        <span class="dif-nope">Casos de empresas extranjeras</span>
+        <span class="dif-sep">↔</span>
+        <span class="dif-si">Casos reales de su organización</span>
+      </div>
+      <div class="diferencia-row">
+        <span class="dif-nope">El mismo taller para todos</span>
+        <span class="dif-sep">↔</span>
+        <span class="dif-si">Perfil individual + intervención personalizada</span>
+      </div>
+      <div class="diferencia-row">
+        <span class="dif-nope">Facilitador que aplica el método de otro</span>
+        <span class="dif-sep">↔</span>
+        <span class="dif-si">El autor del método conduce cada sesión</span>
+      </div>
+      <div class="diferencia-row">
+        <span class="dif-nope">Conocimiento que se olvida el lunes</span>
+        <span class="dif-sep">↔</span>
+        <span class="dif-si">Plan de implementación con seguimiento mensual</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAMA ───────────────────────────────────────────────────────── -->
+<section class="programa" id="programa">
+  <div class="section-label">Estructura del programa</div>
+  <h2 class="section-title"><em>Tres meses.</em> Un directivo diferente.</h2>
+
+  <div class="meses-grid">
+    <div class="mes-card">
+      <div class="mes-num">01</div>
+      <div class="mes-titulo">Diagnóstico y autoconocimiento</div>
+      <ul class="mes-items">
+        <li>Perfil tricerebral completo (test de 27 preguntas): cómo procesa la información, cómo decide bajo presión, cuál es su tendencia natural ante la incertidumbre.</li>
+        <li>Mapa de desequilibrios: identificación de los patrones que generan sus errores más costosos como directivo.</li>
+        <li>Sesión de 60 minutos: análisis del contexto organizacional actual y los tres problemas más urgentes.</li>
+        <li>Plan de los primeros 30 días: tres hábitos concretos para comenzar a calibrar el cerebro más débil.</li>
+      </ul>
+    </div>
+    <div class="mes-card">
+      <div class="mes-num">02</div>
+      <div class="mes-titulo">Método e intervención</div>
+      <ul class="mes-items">
+        <li>El Ciclo Cibernético de Transformación aplicado a su realidad: las herramientas del modelo GT-OI sobre los tres problemas identificados en el Mes 1.</li>
+        <li>Sesión de 60 minutos: trabajo sobre una decisión crítica pendiente. Se aplica el método completo en vivo.</li>
+        <li>Protocolo de alineación de equipo: cómo presentar el método a sus colaboradores sin necesidad de un taller formal.</li>
+        <li>Seguimiento quincenal por WhatsApp: revisión de avances y ajuste del plan.</li>
+      </ul>
+    </div>
+    <div class="mes-card">
+      <div class="mes-num">03</div>
+      <div class="mes-titulo">Consolidación y transferencia</div>
+      <ul class="mes-items">
+        <li>Revisión de avances (sesión 60 min): comparación del perfil inicial vs. el actual. Qué cambió, qué sigue siendo un punto ciego.</li>
+        <li>Protocolo de transferencia al equipo: cómo el directivo aplica el método tricerebral con sus propios colaboradores.</li>
+        <li>Guía simplificada GT-OI: documento de trabajo que el directivo puede usar de manera autónoma.</li>
+        <li>Sesión de cierre e integración: los tres cambios más importantes del proceso y el plan de los próximos 90 días.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="incluido-grid">
+    <div class="incluido-item">
+      <div class="inc-icon">📊</div>
+      <div>
+        <div class="inc-titulo">3 sesiones individuales de 60 minutos</div>
+        <div class="inc-desc">Una por mes. Por videollamada o presencial en Guanare/Araure según disponibilidad.</div>
+      </div>
+    </div>
+    <div class="incluido-item">
+      <div class="inc-icon">🧩</div>
+      <div>
+        <div class="inc-titulo">Perfil tricerebral completo con informe</div>
+        <div class="inc-desc">Test de 27 preguntas. Informe personalizado con interpretación del Dr. Armas.</div>
+      </div>
+    </div>
+    <div class="incluido-item">
+      <div class="inc-icon">📱</div>
+      <div>
+        <div class="inc-titulo">Soporte directo por WhatsApp</div>
+        <div class="inc-desc">Respuesta en menos de 24h en días hábiles. Canal directo con el Dr. Armas durante los 3 meses.</div>
+      </div>
+    </div>
+    <div class="incluido-item">
+      <div class="inc-icon">📋</div>
+      <div>
+        <div class="inc-titulo">Materiales y guías del modelo GT-OI</div>
+        <div class="inc-desc">Documentos de trabajo, plantillas del Ciclo Cibernético y guía de transferencia al equipo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUIÉN ───────────────────────────────────────────────────────────── -->
+<section class="quien">
+  <div class="section-label">El mentor</div>
+  <h2 class="section-title">El mismo investigador que <em>desarrolló el método</em> conduce cada sesión</h2>
+
+  <div class="quien-inner">
+    <div>
+      <div class="quien-card">
+        <div class="quien-nombre">Dr. Félix Arturo Armas</div>
+        <div class="quien-cargo">Doctor en Gerencia Avanzada · UNELLEZ · 2025</div>
+        <ul class="quien-credenciales">
+          <li>Doctorado en Gerencia Avanzada, Universidad Nacional Experimental de los Llanos Occidentales "Ezequiel Zamora" — UNELLEZ, Estado Portuguesa</li>
+          <li>Tesis aprobada con Mención Honorífica y Mención Publicación, julio 2025</li>
+          <li>Autor del modelo GT-OI: Gestión Tricerebral aplicada a Organizaciones Inteligentes</li>
+          <li>Formación en Cibernética Social — Módulo I (Gregori)</li>
+          <li>Investigación basada en MacLean, Sperry, Gregori, Senge y Morin</li>
+          <li>Araure, Estado Portuguesa, Venezuela</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quien-bio">
+      <p>Durante cuatro años de investigación doctoral, el Dr. Armas desarrolló el modelo GT-OI: una aproximación que integra la Teoría Tricerebral de Waldemar de Gregori con la teoría de las Organizaciones Inteligentes de Peter Senge y el pensamiento complejo de Edgar Morin. El resultado es un marco conceptual original, con <strong>sustento científico propio y aplicación directa a la gestión organizacional venezolana.</strong></p>
+      <p>Lo que distingue esta mentoría de cualquier otro programa de acompañamiento directivo disponible en el mercado: <strong>el mentor es el autor del método.</strong> No es un facilitador que aprendió una metodología de terceros. Es el investigador que construyó el modelo desde cero, lo sometió a rigor académico durante cuatro años, y lo presentó ante un jurado universitario que lo aprobó con los máximos reconocimientos.</p>
+      <p>Eso garantiza algo que ningún programa importado puede ofrecer: <strong>profundidad real, precisión conceptual y capacidad de adaptación a las particularidades de cada cliente.</strong></p>
+
+      <div class="quien-quote">
+        <p>"El objetivo de la mentoría no es darle más información. Es ayudarle a entender cómo decide usted bajo presión, y darle un método para que esa comprensión se convierta en resultados concretos el lunes siguiente."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARA QUIÉN ──────────────────────────────────────────────────────── -->
+<section class="paraquien">
+  <div class="section-label">¿Es para usted?</div>
+  <h2 class="section-title">Este programa <em>sí aplica</em> — y cuándo no</h2>
+
+  <div class="paraquien-grid">
+    <div class="pq-card si">
+      <div class="pq-header">Este programa es para usted si</div>
+      <ul class="pq-list">
+        <li>Dirige un equipo de al menos 3 personas y toma decisiones que afectan la operación de su organización.</li>
+        <li>Siente que su equipo reacciona de manera inconsistente ante situaciones de presión o cambio.</li>
+        <li>Ha asistido a talleres o cursos de liderazgo que no cambiaron nada el lunes siguiente.</li>
+        <li>Quiere un método científicamente fundamentado, no recetas motivacionales.</li>
+        <li>Está dispuesto a invertir tres meses en un proceso de cambio real, no en una experiencia puntual.</li>
+        <li>Opera en el contexto venezolano y quiere herramientas adaptadas a esa realidad, no casos extranjeros.</li>
+      </ul>
+    </div>
+    <div class="pq-card no">
+      <div class="pq-header">Este programa no es para usted si</div>
+      <ul class="pq-list">
+        <li>Busca motivación o inspiración genérica, no un cambio en cómo decide y lidera.</li>
+        <li>No tiene disponibilidad de al menos 2-3 horas al mes para las sesiones y el trabajo entre sesiones.</li>
+        <li>Espera resultados sin compromiso personal en el proceso.</li>
+        <li>Prefiere un programa grupal masivo donde no hay seguimiento individual.</li>
+        <li>No está en posición de tomar decisiones en su organización o no tiene equipo a cargo.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── INVERSIÓN ──────────────────────────────────────────────────────── -->
+<section class="inversion" id="inversion">
+  <div class="section-label">Inversión</div>
+  <h2 class="section-title">Lo que incluye y <em>cómo funciona</em></h2>
+
+  <div class="inv-grid">
+    <div class="inv-detalle">
+      <div class="inv-incluye-titulo">Todo lo que recibe en los 3 meses</div>
+      <div class="inv-item">
+        <div class="inv-item-icon">🎯</div>
+        <div>
+          <div class="inv-item-titulo">Diagnóstico tricerebral completo — Mes 1</div>
+          <div class="inv-item-desc">Test de 27 preguntas + informe personalizado con interpretación del Dr. Armas. Usted entiende cómo decide, cómo reacciona bajo presión y cuál es su tendencia natural.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">🔄</div>
+        <div>
+          <div class="inv-item-titulo">3 sesiones individuales de 60 minutos</div>
+          <div class="inv-item-desc">Una por mes. Presencial o videollamada. Sin agenda fija: cada sesión trabaja sobre lo que es más urgente para usted en ese momento.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">⚙️</div>
+        <div>
+          <div class="inv-item-titulo">Ciclo Cibernético aplicado a sus casos reales</div>
+          <div class="inv-item-desc">La herramienta central del modelo GT-OI, aplicada sobre decisiones reales y pendientes de su organización. No ejemplos de manuales — su realidad concreta.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">📱</div>
+        <div>
+          <div class="inv-item-titulo">Soporte directo por WhatsApp — 3 meses</div>
+          <div class="inv-item-desc">Acceso directo al Dr. Armas. Respuesta en menos de 24h en días hábiles para consultas, ajustes del plan y revisión de avances.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">📄</div>
+        <div>
+          <div class="inv-item-titulo">Materiales exclusivos GT-OI</div>
+          <div class="inv-item-desc">Guía del Ciclo Cibernético, plantillas de análisis tricerebral, protocolo de transferencia al equipo y plan de los 90 días siguientes.</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-item-icon">🏆</div>
+        <div>
+          <div class="inv-item-titulo">Sesión de cierre e integración</div>
+          <div class="inv-item-desc">Al finalizar los 3 meses: revisión de los cambios concretos, plan de continuidad autónoma y guía para aplicar el método con su propio equipo.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inv-precio-box">
+      <div class="inv-precio-label">Inversión total · Programa 3 meses</div>
+      <div class="inv-precio">$350</div>
+      <div class="inv-precio-sub">USD por mes · Total: $1.050</div>
+
+      <div class="inv-pago-plan">
+        <div class="inv-pago-titulo">Plan de pago</div>
+        <div class="inv-pago-desc">$350 al iniciar el Mes 1 · $350 al iniciar el Mes 2 · $350 al iniciar el Mes 3.<br><br>Pago en Bs. al tipo BCV vigente o en divisas según acuerdo.</div>
+      </div>
+
+      <a href="#cta-final" class="inv-cta">Solicitar conversación de diagnóstico</a>
+      <div class="inv-nota">
+        La conversación de diagnóstico es gratuita y sin compromiso.<br>
+        Dura 30 minutos. Se realiza por WhatsApp o videollamada.<br>
+        Solo se inicia el proceso si hay fit real.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ──────────────────────────────────────────────────────── -->
+<section class="cta-final" id="cta-final">
+  <h2>El primer paso no cuesta nada. <em>Solo cuesta no darlo.</em></h2>
+  <p>Una conversación de 30 minutos para entender su situación y confirmar si este programa resuelve lo que usted necesita. Sin compromiso. Sin precio. Solo diagnóstico.</p>
+  <div class="btn-row">
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20quiero%20saber%20si%20el%20programa%20de%20mentor%C3%ADa%20aplica%20para%20mi%20caso." class="btn-primary" target="_blank">Escribir por WhatsApp</a>
+    <a href="mailto:felixarmas@gmail.com?subject=Solicitud%20de%20conversaci%C3%B3n%20%E2%80%94%20Mentor%C3%ADa%20Tricerebral" class="btn-ghost">Enviar correo</a>
+  </div>
+  <div class="cta-firma">
+    <strong>Dr. Félix Arturo Armas</strong>
+    Doctor en Gerencia Avanzada · UNELLEZ · Mención Honorífica · Mención Publicación · 2025<br>
+    Araure, Estado Portuguesa, Venezuela
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer>
+  <p>Dr. Félix Arturo Armas · Programa de Mentoría Directiva Tricerebral</p>
+  <p>felixarmas@gmail.com · +58 424-5981984 · RIF: V046060632</p>
+  <p>Araure, Estado Portuguesa, Venezuela · 2025</p>
+  <p><a href="https://felixarmas.github.io/GT-OI/" style="color:#C8A96E;">https://felixarmas.github.io/GT-OI/</a></p>
+</footer>
+
+<script>
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Fade in on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.dolor-item, .cerebro-card, .mes-card, .incluido-item, .inv-item, .pq-list li').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
