@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GT-OI — Dr. Félix Arturo Armas</title>
+<title>GT-OI | Dr. Félix Arturo Armas</title>
+<meta name="description" content="Curso virtual Decidir bien bajo presión, 40 horas, con aval y certificado de Alma Mater (OPSU) - UNA. Inscripción abierta. Inicio 18 de enero de 2027.">
+<meta property="og:title" content="Curso virtual: Decidir bien bajo presión | GT-OI">
+<meta property="og:description" content="40 horas, 8 módulos, 3 sesiones sincrónicas. Aval y certificado de Alma Mater (OPSU) - UNA. Inscripción abierta.">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -35,6 +39,33 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
+
+
+  /* ── CURSO VIRTUAL (Alma Mater UNA) ───────────────────────────── */
+  .hero-grid > div { min-width:0; }
+  .badge-open { display:inline-block; background:var(--dorado); color:var(--azul); font-size:12px; font-weight:700; letter-spacing:0.05em; padding:6px 14px; border-radius:999px; margin-bottom:18px; text-transform:uppercase; }
+  .curso-facts { margin-top:40px; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+  .fact { background:var(--blanco); border:1px solid var(--linea); border-radius:14px; padding:18px 20px; }
+  .fact .fv { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--azul); }
+  .fact .fl { font-size:12.5px; color:var(--gris); margin-top:2px; }
+  .curso-table { width:100%; border-collapse:collapse; margin-top:36px; background:var(--blanco); border-radius:14px; overflow:hidden; border:1px solid var(--linea); font-size:14px; }
+  .curso-table th { background:var(--azul); color:var(--marfil); text-align:left; padding:12px 14px; font-weight:600; font-size:13px; }
+  .curso-table td { padding:11px 14px; border-top:1px solid var(--linea); color:var(--gris); }
+  .curso-table td:first-child { color:var(--azul); font-weight:600; }
+  .table-scroll { overflow-x:auto; }
+  .curso-note { font-size:13px; color:var(--gris2); margin-top:12px; }
+  .calc { margin-top:28px; background:var(--marfil2); border:1px solid var(--linea); border-radius:16px; padding:24px 26px; display:grid; grid-template-columns:1fr 1fr auto; gap:16px; align-items:end; }
+  .calc label { display:block; font-size:12.5px; font-weight:600; color:var(--azul); margin-bottom:6px; }
+  .calc select { width:100%; padding:11px 12px; border:1.5px solid var(--linea); border-radius:10px; font-family:'DM Sans',sans-serif; font-size:14px; background:var(--blanco); color:var(--azul); }
+  .calc-out { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--azul); min-width:150px; text-align:right; }
+  .calc-out small { display:block; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:400; color:var(--gris2); }
+  @media (max-width:720px) { .calc { grid-template-columns:1fr; } .calc-out { text-align:left; } }
+  .pasos { margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+  .paso { background:var(--blanco); border:1px solid var(--linea); border-radius:14px; padding:20px; }
+  .paso .pn { width:26px; height:26px; border-radius:50%; background:var(--teal); color:var(--marfil); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
+  .paso p { font-size:14px; color:var(--gris); }
+  .paso strong { color:var(--azul); }
+  .curso-ctas { margin-top:34px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 
   /* ── NAV ─────────────────────────────────────────────────────── */
   nav {
@@ -433,7 +464,7 @@
     display: flex; gap: 10px;
   }
   .author-card li:last-child { border-bottom: none; }
-  .author-card li::before { content: '—'; color: var(--dorado); flex-shrink: 0; }
+  .author-card li::before { content: '•'; color: var(--dorado); flex-shrink: 0; }
   .author-bio p { font-size: 16px; color: var(--gris); line-height: 1.8; margin-bottom: 18px; }
   .author-bio strong { color: var(--azul); font-weight: 600; }
   @media (max-width: 820px) { .author-wrap { grid-template-columns: 1fr; } }
@@ -472,6 +503,7 @@
     <span>GT-OI</span>
   </div>
   <div class="nav-links">
+    <a href="#curso">Curso virtual</a>
     <a href="#vectores">Cómo empezar</a>
     <a href="#diagnosticos">Diagnósticos</a>
     <a href="#autor">El método</a>
@@ -483,12 +515,13 @@
 <header class="hero">
   <div class="hero-grid">
     <div>
+      <div class="badge-open">Inscripción abierta · Curso virtual de 40 h · Inicio 18 de enero de 2027</div>
       <div class="hero-eyebrow">Modelo GT-OI · Dr. Félix Arturo Armas</div>
       <h1>¿Cuál de sus <em>tres cerebros</em> decide cuando la presión sube?</h1>
       <p class="hero-sub">Un método con base doctoral para que usted y su equipo decidan bien bajo presión. Empiece gratis, a su ritmo, y avance solo hasta donde lo necesite.</p>
       <div class="hero-ctas">
-        <a href="#vectores" class="btn btn-primary">Ver por dónde empezar</a>
-        <a href="#diagnosticos" class="btn btn-ghost">Comparar los diagnósticos</a>
+        <a href="#curso" class="btn btn-primary">Inscribirme al curso</a>
+        <a href="#vectores" class="btn btn-ghost">Ver otros caminos</a>
       </div>
       <div class="hero-trust">
         <div class="trust-item"><div class="trust-val">4 años</div><div class="trust-label">de investigación doctoral</div></div>
@@ -513,24 +546,101 @@
       </div>
       <figure class="hero-photo">
         <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Equipo directivo en una reunión de trabajo, discutiendo una decisión" loading="lazy">
-        <figcaption>Así se ve un equipo decidiendo bajo presión — antes de equilibrar sus tres cerebros.</figcaption>
+        <figcaption>Así se ve un equipo decidiendo bajo presión, antes de equilibrar sus tres cerebros.</figcaption>
       </figure>
     </div>
   </div>
 </header>
 
-<!-- ── VECTORES — ESCALERA DE COMPROMISO ───────────────────────── -->
+<!-- ── VECTORES - ESCALERA DE COMPROMISO ───────────────────────── -->
+
+<!-- ── CURSO VIRTUAL ALMA MATER (UNA) ─────────────────────────── -->
+<section id="curso">
+  <div class="section-eyebrow">Inscripción abierta</div>
+  <h2 class="section-title">Curso virtual: <em>Decidir bien bajo presión</em></h2>
+  <p class="section-sub">Método tricerebral GT-OI para directivos y equipos de PYMES. Con aval y certificado de Alma Mater (OPSU) - Universidad Nacional Abierta (UNA).</p>
+
+  <div class="curso-facts">
+    <div class="fact"><div class="fv">40 horas</div><div class="fl">8 módulos en Google Classroom</div></div>
+    <div class="fact"><div class="fv">3 sesiones</div><div class="fl">sincrónicas por Meet, jueves de 6:00 a 7:30 p. m.</div></div>
+    <div class="fact"><div class="fv">18 ene 2027</div><div class="fl">inicio de la primera cohorte</div></div>
+    <div class="fact"><div class="fv">Cupo limitado</div><div class="fl">mínimo 10, máximo 25 participantes</div></div>
+    <div class="fact"><div class="fv">Certificado</div><div class="fl">de Alma Mater (UNA), con 90% de asistencia y 75% de calificación</div></div>
+  </div>
+
+  <div class="table-scroll">
+  <table class="curso-table">
+    <thead><tr><th>Categoría</th><th>Arancel (USD)</th><th>Pago anticipado, 10% menos (USD)</th><th>Fraccionado 50% y 50% (USD)</th></tr></thead>
+    <tbody>
+      <tr><td>Estudiante</td><td>15,00</td><td>13,50</td><td>7,50 + 7,50</td></tr>
+      <tr><td>Docente o empleado</td><td>30,00</td><td>27,00</td><td>15,00 + 15,00</td></tr>
+      <tr><td>Comunidad, emprendedores y público en general</td><td>40,00</td><td>36,00</td><td>20,00 + 20,00</td></tr>
+      <tr><td>Profesional o directivo</td><td>50,00</td><td>45,00</td><td>25,00 + 25,00</td></tr>
+      <tr><td>Paquete de empresa, 3 a 5 personas</td><td>42,50 por persona</td><td>38,25 por persona</td><td>21,25 + 21,25</td></tr>
+      <tr><td>Paquete de empresa, 6 o más personas</td><td>37,50 por persona</td><td>33,75 por persona</td><td>18,75 + 18,75</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="curso-note">Pago anticipado: pago íntegro hasta el 21 de diciembre de 2026. Fraccionado: 50% al inscribirse y 50% antes del módulo 5. Los planes no se acumulan. El arancel está en dólares y se paga en bolívares a la tasa BCV del día del pago.</p>
+
+  <div class="calc" aria-label="Calculadora de arancel">
+    <div><label for="calCat">Su categoría</label>
+      <select id="calCat">
+        <option value="15">Estudiante</option>
+        <option value="30">Docente o empleado</option>
+        <option value="40">Comunidad, emprendedores y público en general</option>
+        <option value="50" selected>Profesional o directivo</option>
+        <option value="42.5">Empresa, 3 a 5 personas (por persona)</option>
+        <option value="37.5">Empresa, 6 o más personas (por persona)</option>
+      </select></div>
+    <div><label for="calPlan">Plan de pago</label>
+      <select id="calPlan">
+        <option value="normal">Arancel regular</option>
+        <option value="anticipado" selected>Pago anticipado (hasta el 21/12/2026)</option>
+        <option value="fraccionado">Fraccionado 50% y 50%</option>
+      </select></div>
+    <div class="calc-out" id="calOut" aria-live="polite"></div>
+  </div>
+
+  <div class="pasos">
+    <div class="paso"><div class="pn">1</div><p><strong>Llene el formulario</strong> de inscripción con sus datos y su categoría.</p></div>
+    <div class="paso"><div class="pn">2</div><p><strong>Reciba por WhatsApp</strong> la confirmación y los datos de pago, en menos de 3 horas.</p></div>
+    <div class="paso"><div class="pn">3</div><p><strong>Pague en bolívares</strong> a la tasa BCV del día, por pago móvil o transferencia.</p></div>
+    <div class="paso"><div class="pn">4</div><p><strong>Reciba su recibo individual</strong> y el acceso al aula virtual antes del inicio.</p></div>
+  </div>
+
+  <div class="curso-ctas">
+    <a href="https://forms.gle/YuSXDm5uwdEQTYYW6" target="_blank" rel="noopener" class="btn btn-primary">Llenar el formulario de inscripción</a>
+    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20quiero%20inscribirme%20en%20el%20curso%20virtual%20Decidir%20bien%20bajo%20presi%C3%B3n.%20Mi%20categor%C3%ADa%20es%3A%20" target="_blank" rel="noopener" class="btn btn-ghost">Consultar por WhatsApp</a>
+  </div>
+  <p class="curso-note" style="text-align:center;">Aval y certificado de Alma Mater (OPSU) - UNA. Responsable académico: Dr. Félix Arturo Armas. RIF V046060632.</p>
+</section>
+
 <section id="vectores">
   <div class="section-eyebrow">Cómo empezar</div>
   <h2 class="section-title">Elija su <em>punto de entrada</em></h2>
-  <p class="section-sub">No hay un solo camino. Empiece donde le haga sentido — gratis, con un diagnóstico pagado, o directo al programa que necesita.</p>
+  <p class="section-sub">No hay un solo camino. Empiece donde le haga sentido: gratis, con un diagnóstico pagado, o directo al programa que necesita.</p>
 
   <div class="ladder">
+
+    <a href="#curso" class="vcard v-b">
+      <div class="vcard-icon">🎓</div>
+      <div class="vcard-body">
+        <div class="vlabel">Curso · Inscripción abierta &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span> &nbsp;·&nbsp; Alma Mater (UNA)</div>
+        <h3>Curso virtual: Decidir bien bajo presión</h3>
+        <p>40 horas, 8 módulos y 3 sesiones sincrónicas. Aval y certificado de Alma Mater (OPSU) - UNA. Inicio el 18 de enero de 2027.</p>
+      </div>
+      <div class="vcard-price">
+        <div class="amt">desde $15</div>
+        <div class="note">según categoría · 10% menos hasta el 21/12</div>
+      </div>
+      <div class="vcard-arrow">→</div>
+    </a>
 
     <a href="#" onclick="abrirTestModal(); return false;" class="vcard v-c">
       <div class="vcard-icon">📝</div>
       <div class="vcard-body">
-        <div class="vlabel">Gratis &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
+        <div class="vlabel">Vector C · Gratis &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
         <h3>Test Triádico Ejecutivo</h3>
         <p>9 preguntas. Una primera idea de cuál de sus tres cerebros domina cuando decide bajo presión.</p>
       </div>
@@ -544,7 +654,7 @@
     <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20soy%20emprendedor%20y%20me%20interesa%20el%20Autodiagn%C3%B3stico%20Tricerebral%20por%20%2415%20USD." target="_blank" class="vcard v-c">
       <div class="vcard-icon">🌱</div>
       <div class="vcard-body">
-        <div class="vlabel">Para emprendedores &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
+        <div class="vlabel">Vector C+ · Para emprendedores &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
         <h3>Autodiagnóstico Tricerebral para Emprendedores</h3>
         <p>Versión guiada del CT adaptada a negocios unipersonales, con interpretación en video y plan de cultivo de 30 días.</p>
       </div>
@@ -558,8 +668,8 @@
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5LGImgC-yU_ahxamWIdy3mwzaKPtmPJQFppSPnebH1lv44Q/viewform?usp=header" target="_blank" class="vcard v-d">
       <div class="vcard-icon">🧭</div>
       <div class="vcard-body">
-        <div class="vlabel">Diagnóstico completo &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
-        <h3>CT — Revelador del Cociente Triádico</h3>
+        <div class="vlabel">Vector D · Diagnóstico completo &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
+        <h3>CT: Revelador del Cociente Triádico</h3>
         <p>27 preguntas. El instrumento original de Waldemar de Gregori con informe personalizado de 6 páginas.</p>
       </div>
       <div class="vcard-price">
@@ -572,7 +682,7 @@
     <a href="#" onclick="abrirKitModal(); return false;" class="vcard v-e">
       <div class="vcard-icon">📦</div>
       <div class="vcard-body">
-        <div class="vlabel">Aplicación autónoma &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
+        <div class="vlabel">Vector E · Aplicación autónoma &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
         <h3>Kit Digital GT-OI</h3>
         <p>5 documentos para aplicar el método completo por su cuenta, sin sesiones con el Dr. Armas.</p>
       </div>
@@ -583,36 +693,22 @@
       <div class="vcard-arrow">→</div>
     </a>
 
-    <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20quiero%20anotarme%20en%20la%20lista%20de%20espera%20del%20Curso%20virtual%20%E2%80%9CDecidir%20bien%20bajo%20presi%C3%B3n%E2%80%9D." target="_blank" class="vcard v-d">
-      <div class="vcard-icon">🎯</div>
-      <div class="vcard-body">
-        <div class="vlabel">Para usted y su empresa &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span> &nbsp;·&nbsp; <span style="color:#8B7020;">Próximamente</span></div>
-        <h3>Curso virtual: Decidir bien bajo presión</h3>
-        <p>40 horas en 8 semanas, con 3 sesiones en vivo. Recibe su perfil de decisión, resuelve un caso real de su empresa con el Ciclo Cibernético de Transformación y sale con un plan de 30 días. Inicio previsto: enero de 2027, sujeto a aval universitario. Anótese en la lista de espera.</p>
-      </div>
-      <div class="vcard-price">
-        <div class="amt">Lista de espera</div>
-        <div class="note">precio al abrir inscripciones</div>
-      </div>
-      <div class="vcard-arrow">→</div>
-    </a>
-
     <div class="vcard v-a" style="cursor:default;">
       <div class="vcard-icon">👥</div>
       <div class="vcard-body" style="width:100%;">
-        <div class="vlabel">Para equipos de una misma empresa &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
-        <h3>Taller GT-OI in company (3 variantes)</h3>
-        <p>4 horas sincrónicas por videollamada con su equipo directivo completo, hasta 12 personas — sin importar en qué ciudad esté cada uno. Mismo formato, mismo precio — elija la variante que necesita y escríbanos por esa opción específica:</p>
+        <div class="vlabel">Vector A · Para equipos &nbsp;·&nbsp; <span style="color:#0D5C47;">💻 Virtual</span></div>
+        <h3>Taller GT-OI para equipos (3 variantes)</h3>
+        <p>4 horas sincrónicas por videollamada con su equipo directivo completo, hasta 12 personas, sin importar en qué ciudad esté cada uno. Mismo formato, mismo precio: elija la variante que necesita y escríbanos por esa opción específica:</p>
         <div style="margin:10px 0; padding:10px 14px; background:#F0F8F6; border-left:3px solid #1A6B5A; border-radius:6px;">
           <span style="font-size:13px; color:#0D5C47; font-weight:700;">✓ Ventaja de la modalidad virtual:</span>
-          <span style="font-size:13px; color:#1A1A1A;"> sin traslados, sin logística ni renta de espacio — su equipo participa desde donde esté, y el taller se agenda en días si hace falta.</span>
+          <span style="font-size:13px; color:#1A1A1A;"> sin traslados, sin logística ni renta de espacio: su equipo participa desde donde esté, y el taller se agenda en días si hace falta.</span>
         </div>
 
         <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
 
           <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20me%20interesa%20el%20Taller%20GT-OI%20para%20mi%20equipo%2C%20variante%20%E2%80%9CDecidir%20bien%20bajo%20presi%C3%B3n%E2%80%9D." target="_blank"
              style="flex:1 1 220px; min-width:200px; background:var(--blanco); border:1.5px solid var(--linea); border-radius:10px; padding:10px 12px; text-decoration:none; color:inherit; transition:all 0.2s;">
-            <strong style="display:block; color:#0D2545; font-size:13px;">① Decidir bien bajo presión</strong>
+            <strong style="display:block; color:#0D2545; font-size:13px;">① Taller: Decidir bien bajo presión</strong>
             <span style="font-size:12px; color:#6B6456;">Foco: decisiones críticas con tiempo limitado</span><br>
             <span style="font-size:12px; color:#0D5C47; font-weight:600;">Elegir esta →</span>
           </a>
@@ -642,7 +738,7 @@
     <a href="https://wa.me/584245981984?text=Hola%20Dr.%20Armas%2C%20me%20interesa%20el%20programa%20de%20Mentor%C3%ADa%20%E2%80%9CDirectivo%20Tricerebral%E2%80%9D%20(%24350%2Fmes%2C%203%20meses).%20Quisiera%20agendar%20la%20conversaci%C3%B3n%20de%20diagn%C3%B3stico%20gratuita." target="_blank" class="vcard v-b">
       <div class="vcard-icon">🎯</div>
       <div class="vcard-body">
-        <div class="vlabel">Para usted &nbsp;·&nbsp; <span style="color:#8B7020;">🔄 Mixta</span></div>
+        <div class="vlabel">Vector B · Para usted &nbsp;·&nbsp; <span style="color:#8B7020;">🔄 Mixta</span></div>
         <h3>Mentoría «Directivo Tricerebral»</h3>
         <p>3 meses de acompañamiento individual, el proceso más profundo del modelo GT-OI. Al finalizar, puede extenderlo con un 4° mes enfocado en <strong>Liderazgo Tricerebral Integrado</strong> (mismo precio mensual).</p>
       </div>
@@ -725,7 +821,7 @@
           <li>3 preguntas por cada uno de los tres cerebros</li>
           <li>3 situaciones de opción múltiple</li>
           <li>Primera lectura orientativa de su perfil</li>
-          <li>Sin informe personalizado — usted mismo interpreta su resultado</li>
+          <li>Sin informe personalizado: usted mismo interpreta su resultado</li>
           <li>Ideal para: curiosidad inicial, antes de decidir si invertir en el diagnóstico completo</li>
         </ul>
         <a href="#" onclick="abrirTestModal(); return false;" class="cbtn">Hacer el test gratis</a>
@@ -733,11 +829,11 @@
 
       <div class="cdiag featured">
         <div class="cdiag-badge">Diagnóstico completo</div>
-        <h3>CT — Cociente Triádico</h3>
+        <h3>CT: Cociente Triádico</h3>
         <div class="cprice">$25 USD</div>
         <div class="cprice-note">27 preguntas · informe personalizado en 24h</div>
         <ul>
-          <li>9 preguntas por cada uno de los tres cerebros — el instrumento original de Gregori</li>
+          <li>9 preguntas por cada uno de los tres cerebros: el instrumento original de Gregori</li>
           <li>Aplica la Ley de la Proporcionalidad: detecta si sus cerebros se anulan o se desequilibran</li>
           <li>Informe en PDF de 6 páginas, redactado y revisado personalmente por el Dr. Armas</li>
           <li>Incluye su perfil dominante, subdominante, débil, y qué calibrar primero</li>
@@ -747,11 +843,11 @@
       </div>
     </div>
 
-    <p class="compare-arrow-note">La mayoría empieza por el test gratuito. Si el resultado le interesa, <strong>el diagnóstico completo</strong> es el siguiente paso natural — y su costo se descuenta del Taller o la Mentoría si decide continuar.</p>
+    <p class="compare-arrow-note">La mayoría empieza por el test gratuito. Si el resultado le interesa, <strong>el diagnóstico completo</strong> es el siguiente paso natural, y su costo se descuenta del Taller o la Mentoría si decide continuar.</p>
   </div>
 </div>
 
-<!-- ── CÓMO FUNCIONA — FLUJO ───────────────────────────────────── -->
+<!-- ── CÓMO FUNCIONA - FLUJO ───────────────────────────────────── -->
 <section>
   <div class="section-eyebrow">El camino completo</div>
   <h2 class="section-title">De la curiosidad a la <em>decisión correcta</em></h2>
@@ -772,7 +868,7 @@
     </figure>
     <figure>
       <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80" alt="Directivos analizando datos y gráficos en una sesión de trabajo" loading="lazy">
-      <figcaption>Datos, intuición y acción — las tres voces en la sala</figcaption>
+      <figcaption>Datos, intuición y acción: las tres voces en la sala</figcaption>
     </figure>
     <figure>
       <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=700&q=80" alt="Líder explicando una estrategia a su equipo en una pizarra" loading="lazy">
@@ -785,57 +881,57 @@
 <section id="testimonios">
   <div class="section-eyebrow">Evidencia de campo</div>
   <h2 class="section-title">Lo que dijeron los <em>directivos</em></h2>
-  <p class="section-sub">Taller «Decidir bien bajo presión» · 4 de agosto de 2026 · Biblioteca del Parque "Musiú Carmelo", Acarigua, Estado Portuguesa · 13 asistentes</p>
+  <p class="section-sub">Taller «Decidir bien bajo presión» · 4 de agosto de 2026 · Biblioteca del Parque "Musiú Carmelo", Acarigua, Estado Portuguesa · 16 asistentes</p>
 
   <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin:28px 0;">
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Poner por encima el valor del talento humano, pero para tomar decisiones colocar en balanza lo afectivo vs. lo administrativo gerencial."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Dilmar Peraza</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Dilmar Peraza</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Tomar decisiones en función del uso del cerebro, considerando los tres cerebros y cuál de ellos debe prevalecer según la situación."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Juan Gonzales</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Juan Gonzales</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Poner en práctica en las reuniones de equipo basarse en las opiniones."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Crisbeth Cañizales</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Crisbeth Cañizales</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Aplicar la sinergia en la tríada del cerebro triuno, lograr un equilibrio en el manejo de las decisiones aplicando el método del cerebro triuno."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Rafael Romero</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Rafael Romero</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Equilibrar los tres cerebros es importante en la toma de decisiones."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Xiomara Bullones</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Xiomara Bullones</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Profundizar más sobre la metodología tricerebral para cultivar el cerebro central."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Claudia Hijuelo</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Claudia Hijuelo</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Autoanalizar los tres cerebros."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Reinaldo Alvarado</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Reinaldo Alvarado</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Mostrar mis emociones al momento de expresarme en público."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Leidy Hernández</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Leidy Hernández</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Indagar más sobre la inteligencia colectiva."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Giovanny Romero</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Giovanny Romero</footer>
     </blockquote>
     <blockquote style="margin:0; padding:18px 20px; background:var(--blanco,#fff); border:1px solid var(--linea,#e8e2d5); border-radius:12px;">
       <p style="margin:0 0 10px; font-style:italic; color:#1A1A1A; font-size:14px;">"Aprender a mirar las diferentes circunstancias o dimensiones."</p>
-      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">— Yuli Orellana</footer>
+      <footer style="font-size:13px; font-weight:700; color:var(--azul,#0D2545);">Yuli Orellana</footer>
     </blockquote>
   </div>
 
   <div style="background:var(--azul,#0D2545); border-radius:14px; padding:22px 26px; color:#fff; text-align:center; margin-bottom:10px;">
     <div style="font-size:28px; font-weight:800; color:var(--dorado,#B8922A);">67%</div>
-    <p style="margin:6px 0 0; font-size:14px; max-width:560px; margin-left:auto; margin-right:auto; opacity:0.9;">de los testimonios convergieron espontáneamente con la Ley de la Proporcionalidad de Gregori, sin que los participantes fueran inducidos hacia esa terminología — evidencia de aplicación práctica del modelo GT-OI.</p>
+    <p style="margin:6px 0 0; font-size:14px; max-width:560px; margin-left:auto; margin-right:auto; opacity:0.9;">de los testimonios convergieron espontáneamente con la Ley de la Proporcionalidad de Gregori, sin que los participantes fueran inducidos hacia esa terminología, evidencia de aplicación práctica del modelo GT-OI.</p>
   </div>
 
-  <p style="font-size:13px; color:var(--gris2,#6B6456); text-align:center; margin-top:14px;">Se recolectaron 15 testimonios en total. Los 5 restantes, junto con el material fotográfico y audiovisual del evento, están pendientes de anexar como soporte adicional.</p>
+  
 </section>
 
 <!-- ── AUTOR ────────────────────────────────────────────────────── -->
@@ -857,15 +953,15 @@
     </div>
     <div class="author-bio">
       <p>El modelo GT-OI integra la <strong>Teoría Tricerebral</strong> de Waldemar de Gregori con la teoría de las <strong>Organizaciones Inteligentes</strong> de Peter Senge y el <strong>Pensamiento Complejo</strong> de Edgar Morin.</p>
-      <p>Cada instrumento de diagnóstico —el Test gratuito y el CT completo— mide las mismas tres inteligencias que Gregori documentó: la <strong>lógico-analítica</strong>, la <strong>operativa-pragmática</strong> y la <strong>intuitivo-emocional</strong>. Lo que cambia entre un producto y otro es la profundidad de la medición, no el método.</p>
-      <p>Cada sesión —ya sea un taller, una mentoría o la revisión de un informe— la conduce personalmente el mismo investigador que desarrolló el modelo.</p>
+      <p>Cada instrumento de diagnóstico (el Test gratuito y el CT completo) mide las mismas tres inteligencias que Gregori documentó: la <strong>lógico-analítica</strong>, la <strong>operativa-pragmática</strong> y la <strong>intuitivo-emocional</strong>. Lo que cambia entre un producto y otro es la profundidad de la medición, no el método.</p>
+      <p>Cada sesión (ya sea un taller, una mentoría o la revisión de un informe) la conduce personalmente el mismo investigador que desarrolló el modelo.</p>
     </div>
   </div>
 
   <div class="gregori-credit">
     <div class="gc-label">Fuente original del método</div>
     <h4>Waldemar de Gregori</h4>
-    <p>Toda la base diagnóstica de GT-OI —el CT, la Ley de la Proporcionalidad y el Ciclo Cibernético de Transformación— proviene de la obra de <strong>Waldemar de Gregori</strong>, sociólogo brasileño, creador de la <strong>Teoría Tricerebral</strong> y de la <strong>Cibernética Social</strong>. El Dr. Armas aplica estos instrumentos con fidelidad a sus fuentes originales y los integra al contexto de la gestión organizacional contemporánea.</p>
+    <p>Toda la base diagnóstica de GT-OI (el CT, la Ley de la Proporcionalidad y el Ciclo Cibernético de Transformación) proviene de la obra de <strong>Waldemar de Gregori</strong>, sociólogo brasileño, creador de la <strong>Teoría Tricerebral</strong> y de la <strong>Cibernética Social</strong>. El Dr. Armas aplica estos instrumentos con fidelidad a sus fuentes originales y los integra al contexto de la gestión organizacional contemporánea.</p>
   </div>
 </section>
 
@@ -893,7 +989,7 @@
   </div>
 </div>
 
-<!-- ── MODAL: KIT DIGITAL — PEDIDO ─────────────────────────────── -->
+<!-- ── MODAL: KIT DIGITAL - PEDIDO ─────────────────────────────── -->
 <div class="test-modal-overlay" id="kitModalOverlay" onclick="if(event.target===this) cerrarKitModal()">
   <div class="test-modal" style="max-width:480px;" role="dialog" aria-labelledby="kitModalTitle" aria-modal="true">
     <div class="test-modal-head">
@@ -926,8 +1022,8 @@
 
 <script>
 // ════════════════════════════════════════════════════════════════
-// TEST TRIÁDICO EJECUTIVO — cálculo nativo (sin Google Forms)
-// Replica la lógica del CT — Revelador del Cociente Triádico:
+// TEST TRIÁDICO EJECUTIVO - cálculo nativo (sin Google Forms)
+// Replica la lógica del CT: Revelador del Cociente Triádico:
 // suma independiente de CI, CC y CD, resultado mostrado al instante.
 // ════════════════════════════════════════════════════════════════
 const TEST_PREGUNTAS = [
@@ -936,8 +1032,8 @@ const TEST_PREGUNTAS = [
   { cerebro: 'ci', texto: 'Me siento más seguro liderando cuando cuento con información precisa, indicadores concretos o un análisis previo.', hint: 'Necesidad de respaldo lógico para decidir con confianza.' },
   { cerebro: 'cc', texto: 'Cuando la situación es crítica, mi primer impulso es actuar, organizar el equipo y poner en marcha una solución de inmediato.', hint: 'Respuesta operativa ante la urgencia.' },
   { cerebro: 'cc', texto: 'Soy reconocido en mi entorno por ejecutar con rapidez y hacer que los proyectos se concreten, incluso en condiciones adversas.', hint: 'Fortaleza en la implementación y el liderazgo práctico.' },
-  { cerebro: 'cc', texto: 'Me incomoda cuando las reuniones se extienden sin llegar a decisiones concretas — prefiero acuerdos de acción con responsables y fechas.', hint: 'Orientación natural al resultado operativo.' },
-  { cerebro: 'cd', texto: 'Antes de decidir algo importante, me importa mucho cómo se siente el equipo — el clima emocional influye en mis decisiones.', hint: 'Lectura del ambiente relacional como insumo decisional.' },
+  { cerebro: 'cc', texto: 'Me incomoda cuando las reuniones se extienden sin llegar a decisiones concretas: prefiero acuerdos de acción con responsables y fechas.', hint: 'Orientación natural al resultado operativo.' },
+  { cerebro: 'cd', texto: 'Antes de decidir algo importante, me importa mucho cómo se siente el equipo: el clima emocional influye en mis decisiones.', hint: 'Lectura del ambiente relacional como insumo decisional.' },
   { cerebro: 'cd', texto: 'Frecuentemente tengo intuiciones sobre el camino correcto a seguir, incluso cuando los datos no son suficientes.', hint: 'Confianza en la percepción intuitiva y la síntesis holística.' },
   { cerebro: 'cd', texto: 'Para mí, una buena decisión debe considerar tanto los resultados esperados como el impacto en las personas involucradas.', hint: 'Integración de lo humano y lo estratégico en la gestión.' },
 ];
@@ -1086,7 +1182,7 @@ function mostrarResultadoTest() {
       </div>
       <div class="test-dominant">
         <div class="dom-label">Su perfil dominante</div>
-        <div class="dom-value">${dom.nombre} — ${dom.sub}</div>
+        <div class="dom-value">${dom.nombre}: ${dom.sub}</div>
         <div class="dom-desc">${dom.desc} En sus situaciones directivas, eligió esta reacción ${conteoSit[dominanteKey]} de 3 veces.</div>
       </div>
       <a href="https://wa.me/584245981984?text=${encodeURIComponent('Hola Dr. Armas, hice el Test Triádico Ejecutivo. Mi resultado: CI='+sumas.ci+', CC='+sumas.cc+', CD='+sumas.cd+'. Quiero saber más sobre el diagnóstico completo.')}"
@@ -1107,7 +1203,7 @@ document.addEventListener('keydown', e => {
 });
 
 // ════════════════════════════════════════════════════════════════
-// KIT DIGITAL GT-OI — Vector E (versión intermedia: form + WhatsApp)
+// KIT DIGITAL GT-OI - Vector E (versión intermedia: form + WhatsApp)
 // ════════════════════════════════════════════════════════════════
 function abrirKitModal() {
   document.getElementById('kitModalOverlay').classList.add('open');
@@ -1138,6 +1234,21 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+</script>
+
+<script>
+(function(){
+  var cat=document.getElementById('calCat'), plan=document.getElementById('calPlan'), out=document.getElementById('calOut');
+  if(!cat||!plan||!out) return;
+  function f(n){ return n.toFixed(2).replace('.',','); }
+  function calc(){
+    var base=parseFloat(cat.value), p=plan.value;
+    if(p==='normal') out.innerHTML='USD '+f(base)+'<small>por persona, pago único</small>';
+    else if(p==='anticipado') out.innerHTML='USD '+f(Math.round(base*90)/100)+'<small>por persona, pago íntegro hasta el 21/12/2026</small>';
+    else out.innerHTML='USD '+f(base/2)+' + '+f(base/2)+'<small>por persona: al inscribirse y antes del módulo 5</small>';
+  }
+  cat.addEventListener('change',calc); plan.addEventListener('change',calc); calc();
+})();
 </script>
 </body>
 </html>
